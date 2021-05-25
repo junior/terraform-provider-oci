@@ -27,7 +27,8 @@ jobs:
         #
         FOLDERS=$(ls -d examples/*/ | jq -R)
         ASSETS=""
-        MAGIC_LINK="https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/examples/"
+        # MAGIC_LINK="https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/examples/"
+        MAGIC_LINK="https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/${{ github.repository_owner }}/${{ github.event.repository.name }}/releases/latest/download/"
         for example_folder in $FOLDERS;
         do
           resource=$(cut -d "/" -f 2 <<< "$example_folder")
