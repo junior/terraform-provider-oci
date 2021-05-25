@@ -1,0 +1,61 @@
+name: Generate stacks for examples and publish
+
+on:
+  push:
+    branches: [ example_magic_buttons ]
+    paths: ['examples/**/**']
+
+jobs:
+
+  publish_stack_examples:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Prepare Index Examples
+      run: |
+        #
+        mkdir -p pages/examples
+        printf '%s\n' 'Terraform Oracle Cloud Infrastructure provider Examples' >pages/README.md
+        printf '%s\n' '' '[magic_button]: https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg' >>pages/README.md
+        # printf '%s\n' '[magic_link]: https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://junior.github.io/actions-Playground/examples/' >>pages/README.md
+
+    - name: Create stacks
+      id: create_stacks
+      run: |
+        #
+        FOLDERS=$(ls -d examples/*/ | jq -R)
+        ASSETS=""
+        MAGIC_LINK="https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/examples/"
+        for example_folder in $FOLDERS;
+        do
+          resource=$(cut -d "/" -f 2 <<< "$example_folder")
+          filename=${resource}.zip
+          folder=$(echo "$example_folder" | tr -d '"')
+          echo "::group::Processing $resource"
+          zip -r $filename $folder || { printf '\n⛔ Unable to create %s stack.\n'; exit 1;  }
+          echo "::endgroup::"
+          ASSETS+="-a ${filename} "
+          cp $filename pages/examples/
+          printf '%s\n' '' ${resource}': [![Deploy to Oracle Cloud][magic_button]]('${MAGIC_LINK}${filename}')' >>pages/README.md
+        done
+        echo "::set-output name=assets::$ASSETS"
+
+    - name: Create Release
+      run: hub release create ${{ steps.create_stacks.outputs.assets }} -F pages/README.md $(date +%Y%m%d%H%M%S)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Generate Index for Github Pages
+      run: |
+        #
+        pip install markdown
+        markdown_py pages/README.md > pages/index.html
+
+    - name: Publish to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: pages
