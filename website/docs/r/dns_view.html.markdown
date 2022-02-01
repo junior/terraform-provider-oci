@@ -10,7 +10,7 @@ description: |-
 # oci_dns_view
 This resource provides the View resource in Oracle Cloud Infrastructure DNS service.
 
-Creates a new view in the specified compartment.
+Creates a new view in the specified compartment. Requires a `PRIVATE` scope query parameter.
 
 
 ## Example Usage
@@ -68,6 +68,14 @@ The following attributes are exported:
 * `time_updated` - The date and time the resource was last updated in "YYYY-MM-ddThh:mm:ssZ" format with a Z offset, as defined by RFC 3339.
 
 	**Example:** `2016-07-22T17:23:59:60Z` 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the View
+	* `update` - (Defaults to 20 minutes), when updating the View
+	* `delete` - (Defaults to 20 minutes), when destroying the View
+
 
 ## Import
 

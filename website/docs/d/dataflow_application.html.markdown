@@ -49,6 +49,7 @@ The following attributes are exported:
 * `id` - The application ID. 
 * `language` - The Spark language. 
 * `logs_bucket_uri` - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+* `metastore_id` - The OCID of Oracle Cloud Infrastructure Hive Metastore. 
 * `num_executors` - The number of executor VMs requested. 
 * `owner_principal_id` - The OCID of the user who created the resource. 
 * `owner_user_name` - The username of the user who created the resource.  If the username of the owner does not exist, `null` will be returned and the caller should refer to the ownerPrincipalId value instead. 
@@ -60,5 +61,6 @@ The following attributes are exported:
 * `state` - The current state of this application. 
 * `time_created` - The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
 * `time_updated` - The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
+* `type` - The Spark application processing type. 
 * `warehouse_bucket_uri` - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
 

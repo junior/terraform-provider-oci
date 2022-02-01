@@ -10,7 +10,7 @@ description: |-
 # oci_database_autonomous_vm_cluster
 This resource provides the Autonomous Vm Cluster resource in Oracle Cloud Infrastructure Database service.
 
-Creates an Autonomous VM cluster for Exadata Cloud@Customer.
+Creates an Autonomous VM cluster for Exadata Cloud@Customer. To create an Autonomous VM Cluster in the Oracle cloud, see [CreateCloudAutonomousVmCluster](https://docs.cloud.oracle.com/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/CreateCloudAutonomousVmCluster).
 
 
 ## Example Usage
@@ -73,6 +73,14 @@ The following attributes are exported:
 * `time_created` - The date and time that the Autonomous VM cluster was created.
 * `time_zone` - The time zone to use for the Autonomous VM cluster. For details, see [DB System Time Zones](https://docs.cloud.oracle.com/iaas/Content/Database/References/timezones.htm).
 * `vm_cluster_network_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM cluster network.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Autonomous Vm Cluster
+	* `update` - (Defaults to 20 minutes), when updating the Autonomous Vm Cluster
+	* `delete` - (Defaults to 20 minutes), when destroying the Autonomous Vm Cluster
+
 
 ## Import
 

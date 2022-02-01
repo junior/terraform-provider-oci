@@ -45,7 +45,7 @@ The following arguments are supported:
 * `freeform_tags` - (Optional) (Updatable) Simple key-value pair that is applied without any predefined name, type or scope. Exists for cross-compatibility only. Example: `{"bar-key": "value"}` 
 * `hostname` - (Optional) (Updatable) The hostname where the entity represented here is actually present. This would be the output one would get if they run `echo $HOSTNAME` on Linux or an equivalent OS command. This may be different from management agents host since logs may be collected remotely. 
 * `management_agent_id` - (Optional) (Updatable) The OCID of the Management Agent. 
-* `name` - (Required) (Updatable) Log analytics entity name. The name must be unique, within the tenancy, and cannot be changed. 
+* `name` - (Required) (Updatable) Log analytics entity name. 
 * `namespace` - (Required) The Logging Analytics namespace used for the request. 
 * `properties` - (Optional) (Updatable) The name/value pairs for parameter values to be used in file patterns specified in log sources. 
 * `source_id` - (Optional) This indicates the type of source. It is primarily for Enterprise Manager Repository ID. 
@@ -72,13 +72,21 @@ The following attributes are exported:
 * `management_agent_compartment_id` - Management agent (management-agents resource kind) compartment OCID 
 * `management_agent_display_name` - Management agent (management-agents resource kind) display name 
 * `management_agent_id` - The OCID of the Management Agent. 
-* `name` - Log analytics entity name. The name must be unique, within the tenancy, and cannot be changed. 
+* `name` - Log analytics entity name. 
 * `properties` - The name/value pairs for parameter values to be used in file patterns specified in log sources. 
 * `source_id` - This indicates the type of source. It is primarily for Enterprise Manager Repository ID. 
 * `state` - The current state of the log analytics entity. 
 * `time_created` - The date and time the resource was created, in the format defined by RFC3339. 
 * `time_updated` - The date and time the resource was last updated, in the format defined by RFC3339. 
 * `timezone_region` - The timezone region of the log analytics entity. 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Log Analytics Entity
+	* `update` - (Defaults to 20 minutes), when updating the Log Analytics Entity
+	* `delete` - (Defaults to 20 minutes), when destroying the Log Analytics Entity
+
 
 ## Import
 

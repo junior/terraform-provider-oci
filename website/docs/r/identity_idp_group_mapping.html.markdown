@@ -10,6 +10,8 @@ description: |-
 # oci_identity_idp_group_mapping
 This resource provides the Idp Group Mapping resource in Oracle Cloud Infrastructure Identity service.
 
+**Deprecated.** For more information, see [Deprecated IAM Service APIs](https://docs.cloud.oracle.com/iaas/Content/Identity/Reference/deprecatediamapis.htm).
+
 Creates a single mapping between an IdP group and an IAM Service
 [group](https://docs.cloud.oracle.com/iaas/api/#/en/identity/20160918/Group/).
 
@@ -49,6 +51,14 @@ The following attributes are exported:
 * `inactive_state` - The detailed status of INACTIVE lifecycleState.
 * `state` - The mapping's current state.
 * `time_created` - Date and time the mapping was created, in the format defined by RFC3339.  Example: `2016-08-25T21:10:29.600Z` 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Idp Group Mapping
+	* `update` - (Defaults to 20 minutes), when updating the Idp Group Mapping
+	* `delete` - (Defaults to 20 minutes), when destroying the Idp Group Mapping
+
 
 ## Import
 

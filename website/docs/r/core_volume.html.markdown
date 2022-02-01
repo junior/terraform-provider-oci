@@ -31,10 +31,10 @@ description. It does not have to be unique, and you can change it. Avoid enterin
 ```hcl
 resource "oci_core_volume" "test_volume" {
 	#Required
-	availability_domain = var.volume_availability_domain
 	compartment_id = var.compartment_id
 
 	#Optional
+	availability_domain = var.volume_availability_domain
 	backup_policy_id = data.oci_core_volume_backup_policies.test_volume_backup_policies.volume_backup_policies.0.id
 	block_volume_replicas {
 		#Required
@@ -64,11 +64,11 @@ resource "oci_core_volume" "test_volume" {
 
 The following arguments are supported:
 
-* `availability_domain` - (Required) The availability domain of the volume.  Example: `Uocm:PHX-AD-1` 
+* `availability_domain` - (Optional) The availability domain of the volume. Omissible for cloning a volume. The new volume will be created in the availability domain of the source volume.  Example: `Uocm:PHX-AD-1` 
 * `backup_policy_id` - (Optional) If provided, specifies the ID of the volume backup policy to assign to the newly created volume. If omitted, no policy will be assigned. 
 * `block_volume_replicas` - (Optional) (Updatable) The list of block volume replicas to be enabled for this volume in the specified destination availability domains. 
 	* `availability_domain` - (Required) (Updatable) The availability domain of the block volume replica.  Example: `Uocm:PHX-AD-1` 
-	* `display_name` - (Optional) (Updatable) The display name of the block volume replica. You may optionally specify a *display name* for the block volume replica, otherwise a default is provided. 
+	* `display_name` - (Optional) (Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. 
 * `compartment_id` - (Required) (Updatable) The OCID of the compartment that contains the volume.
 * `defined_tags` - (Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).  Example: `{"Operations.CostCenter": "42"}` 
 * `display_name` - (Optional) (Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. 
@@ -103,7 +103,7 @@ The following attributes are exported:
 * `block_volume_replicas` - The list of block volume replicas of this volume.
 	* `availability_domain` - The availability domain of the block volume replica.  Example: `Uocm:PHX-AD-1` 
 	* `block_volume_replica_id` - The block volume replica's Oracle ID (OCID).
-	* `display_name` - The display name of the block volume replica 
+	* `display_name` - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. 
 * `compartment_id` - The OCID of the compartment that contains the volume.
 * `defined_tags` - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).  Example: `{"Operations.CostCenter": "42"}` 
 * `display_name` - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. 
@@ -128,6 +128,14 @@ The following attributes are exported:
 	* `10`: Represents Balanced option.
 	* `20`: Represents Higher Performance option. 
 * `block_volume_replicas_deletion` - The boolean value, if you have replicas and want to disable replicas set this argument to true and remove `block_volume_replicas` in representation at the same time. If you want to enable a new replicas, remove this argument and use `block_volume_replicas` again.
+
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Volume
+	* `update` - (Defaults to 20 minutes), when updating the Volume
+	* `delete` - (Defaults to 20 minutes), when destroying the Volume
 
 
 ## Import

@@ -11,10 +11,22 @@ import (
 
 	"github.com/fatih/color"
 
+	"github.com/terraform-providers/terraform-provider-oci/internal/resourcediscovery"
+
+	"github.com/terraform-providers/terraform-provider-oci/internal/globalvar"
+
+	//	"strings"
+
+	//"github.com/terraform-providers/terraform-provider-oci/oci/resourcediscovery"
+
+	//	"github.com/terraform-providers/terraform-provider-oci/oci/tfresource"
+
+	//	"github.com/fatih/color"
+
 	"github.com/hashicorp/terraform-plugin-sdk/plugin"
 	"github.com/hashicorp/terraform-plugin-sdk/terraform"
 
-	provider "github.com/terraform-providers/terraform-provider-oci/oci"
+	"github.com/terraform-providers/terraform-provider-oci/internal/provider"
 )
 
 func main() {
@@ -34,7 +46,7 @@ func main() {
 	var parallelism = flag.Int("parallelism", 1, "The number of threads to use for resource discovery. By default the value is 1")
 
 	flag.Parse()
-	provider.PrintVersion()
+	globalvar.PrintVersion()
 
 	if help != nil && *help {
 		flag.PrintDefaults()
@@ -52,11 +64,11 @@ func main() {
 		switch *command {
 		case "export":
 
-			var terraformVersion provider.TfHclVersion
-			if provider.TfVersionEnum(*tfVersion) == provider.TfVersion11 {
-				terraformVersion = &provider.TfHclVersion11{Value: provider.TfVersionEnum(*tfVersion)}
-			} else if *tfVersion == "" || provider.TfVersionEnum(*tfVersion) == provider.TfVersion12 {
-				terraformVersion = &provider.TfHclVersion12{Value: provider.TfVersionEnum(*tfVersion)}
+			var terraformVersion resourcediscovery.TfHclVersion
+			if resourcediscovery.TfVersionEnum(*tfVersion) == resourcediscovery.TfVersion11 {
+				terraformVersion = &resourcediscovery.TfHclVersion11{Value: resourcediscovery.TfVersionEnum(*tfVersion)}
+			} else if *tfVersion == "" || resourcediscovery.TfVersionEnum(*tfVersion) == resourcediscovery.TfVersion12 {
+				terraformVersion = &resourcediscovery.TfHclVersion12{Value: resourcediscovery.TfVersionEnum(*tfVersion)}
 			} else {
 				color.Red("[ERROR]: Invalid tf_version '%s', supported values: 0.11, 0.12\n", *tfVersion)
 				os.Exit(1)
@@ -67,7 +79,7 @@ func main() {
 				os.Exit(1)
 			}
 
-			args := &provider.ExportCommandArgs{
+			args := &resourcediscovery.ExportCommandArgs{
 				CompartmentId:                compartmentId,
 				CompartmentName:              compartmentName,
 				OutputDir:                    outputPath,
@@ -89,19 +101,19 @@ func main() {
 			if ids != nil && *ids != "" {
 				args.IDs = strings.Split(*ids, ",")
 			}
-			err, status := provider.RunExportCommand(args)
+			err, status := resourcediscovery.RunExportCommand(args)
 			if err != nil {
 				color.Red("%v", err)
 			}
 			os.Exit(int(status))
 
 		case "list_export_resources":
-			if err := provider.RunListExportableResourcesCommand(); err != nil {
+			if err := resourcediscovery.RunListExportableResourcesCommand(); err != nil {
 				color.Red("%v", err)
 				os.Exit(1)
 			}
 		case "list_export_services":
-			if err := provider.RunListExportableServicesCommand(*listExportServicesPath); err != nil {
+			if err := resourcediscovery.RunListExportableServicesCommand(*listExportServicesPath); err != nil {
 				color.Red("%v", err)
 				os.Exit(1)
 			}

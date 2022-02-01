@@ -34,6 +34,7 @@ resource "oci_database_exadata_infrastructure" "test_exadata_infrastructure" {
 
 	#Optional
 	activation_file = var.exadata_infrastructure_activation_file
+	compute_count = var.exadata_infrastructure_compute_count
 	contacts {
 		#Required
 		email = var.exadata_infrastructure_contacts_email
@@ -64,6 +65,7 @@ resource "oci_database_exadata_infrastructure" "test_exadata_infrastructure" {
 		}
 		weeks_of_month = var.exadata_infrastructure_maintenance_window_weeks_of_month
 	}
+	storage_count = var.exadata_infrastructure_storage_count
 }
 ```
 
@@ -76,6 +78,7 @@ The following arguments are supported:
 * `cloud_control_plane_server1` - (Required) (Updatable) The IP address for the first control plane server.
 * `cloud_control_plane_server2` - (Required) (Updatable) The IP address for the second control plane server.
 * `compartment_id` - (Required) (Updatable) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment. 
+* `compute_count` - (Optional) The number of compute servers for the Exadata infrastructure.
 * `contacts` - (Optional) (Updatable) The list of contacts for the Exadata infrastructure.
 	* `email` - (Required) (Updatable) The email for the Exadata Infrastructure contact.
 	* `is_contact_mos_validated` - (Optional) (Updatable) If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact is not a valid MOS contact.
@@ -102,8 +105,9 @@ The following arguments are supported:
 * `netmask` - (Required) (Updatable) The netmask for the control plane network.
 * `ntp_server` - (Required) (Updatable) The list of NTP server IP addresses. Maximum of 3 allowed.
 * `shape` - (Required) The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance. 
+* `storage_count` - (Optional) The number of storage servers for the Exadata infrastructure.
 * `time_zone` - (Required) (Updatable) The time zone of the Exadata infrastructure. For details, see [Exadata Infrastructure Time Zones](https://docs.cloud.oracle.com/iaas/Content/Database/References/timezones.htm). 
-
+* `additional_storage_count` - The requested number of additional storage servers for the Exadata infrastructure.
 
 ** IMPORTANT **
 Any change to a property that does not support update will force the destruction and recreation of the resource with the new property values
@@ -112,10 +116,13 @@ Any change to a property that does not support update will force the destruction
 
 The following attributes are exported:
 
+* `activated_storage_count` - The requested number of additional storage servers activated for the Exadata infrastructure.
+* `additional_storage_count` - The requested number of additional storage servers for the Exadata infrastructure.
 * `admin_network_cidr` - The CIDR block for the Exadata administration network.
 * `cloud_control_plane_server1` - The IP address for the first control plane server.
 * `cloud_control_plane_server2` - The IP address for the second control plane server.
 * `compartment_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
+* `compute_count` - The number of compute servers for the Exadata infrastructure.
 * `contacts` - The list of contacts for the Exadata infrastructure.
 	* `email` - The email for the Exadata Infrastructure contact.
 	* `is_contact_mos_validated` - If `true`, this Exadata Infrastructure contact is a valid My Oracle Support (MOS) contact. If `false`, this Exadata Infrastructure contact is not a valid MOS contact.
@@ -134,7 +141,6 @@ The following attributes are exported:
 * `gateway` - The gateway for the control plane network.
 * `id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
 * `infini_band_network_cidr` - The CIDR block for the Exadata InfiniBand interconnect.
-* `last_maintenance_run_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the last maintenance run.
 * `lifecycle_details` - Additional information about the current lifecycle state.
 * `maintenance_slo_status` - A field to capture ‘Maintenance SLO Status’ for the Exadata infrastructure with values ‘OK’, ‘DEGRADED’. Default is ‘OK’ when the infrastructure is provisioned.
 * `maintenance_window` - The scheduling details for the quarterly maintenance window. Patching and system updates take place during the maintenance window. 
@@ -153,12 +159,20 @@ The following attributes are exported:
 * `max_memory_in_gbs` - The total memory available in GBs.
 * `memory_size_in_gbs` - The memory allocated in GBs.
 * `netmask` - The netmask for the control plane network.
-* `next_maintenance_run_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the next maintenance run.
 * `ntp_server` - The list of NTP server IP addresses. Maximum of 3 allowed.
 * `shape` - The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance. 
 * `state` - The current lifecycle state of the Exadata infrastructure.
+* `storage_count` - The number of Exadata storage servers for the Exadata infrastructure.
 * `time_created` - The date and time the Exadata infrastructure was created.
 * `time_zone` - The time zone of the Exadata infrastructure. For details, see [Exadata Infrastructure Time Zones](https://docs.cloud.oracle.com/iaas/Content/Database/References/timezones.htm).
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Exadata Infrastructure
+	* `update` - (Defaults to 20 minutes), when updating the Exadata Infrastructure
+	* `delete` - (Defaults to 20 minutes), when destroying the Exadata Infrastructure
+
 
 ## Import
 

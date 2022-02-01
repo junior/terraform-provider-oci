@@ -10,7 +10,12 @@ description: |-
 # oci_management_dashboard_management_dashboards_import
 This resource provides the Management Dashboards Import resource in Oracle Cloud Infrastructure Management Dashboard service.
 
-Imports an array of dashboards and their saved searches.
+Imports an array of dashboards and their saved searches. Here's an example of how you can use CLI to import a dashboard. For information on the details that must be passed to IMPORT, you can use the EXPORT API to obtain the Import.json file:
+oci management-dashboard dashboard export --query data --export-dashboard-id "{\"dashboardIds\":[\"ocid1.managementdashboard.oc1..dashboardId1\"]}"  > Import.json.
+Note that import API updates the resource if it already exist, and creates a new resource if it does not exist. To import to a different compartment, edit and change the compartmentId to the desired compartment OCID.
+Here is an example of how you can use CLI to do import:
+
+oci management-dashboard dashboard import --from-json file://Import.json 
 
 
 ## Example Usage
@@ -36,6 +41,14 @@ Any change to a property that does not support update will force the destruction
 ## Attributes Reference
 
 The following attributes are exported:
+
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Management Dashboards Import
+	* `update` - (Defaults to 20 minutes), when updating the Management Dashboards Import
+	* `delete` - (Defaults to 20 minutes), when destroying the Management Dashboards Import
 
 
 ## Import

@@ -27,12 +27,24 @@ variable "cloud_vm_cluster_cpu_core_count" {
   default = "8"
 }
 
+variable "cloud_vm_cluster_ocpu_count" {
+  default = "8.0"
+}
+
 variable "cloud_vm_cluster_gi_version" {
   default = "19.0.0.0"
 }
 
 variable "cloud_vm_cluster_hostname" {
   default = "myoracledb"
+}
+
+variable "cloud_vm_cluster_scan_listener_port_tcp" {
+  default = "1521"
+}
+
+variable "cloud_vm_cluster_scan_listener_port_tcp_ssl" {
+  default = "2484"
 }
 
 # DBSystem specific

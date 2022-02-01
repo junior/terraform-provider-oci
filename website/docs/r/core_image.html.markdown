@@ -137,9 +137,10 @@ Any change to a property that does not support update will force the destruction
 The following attributes are exported:
 
 * `agent_features` - Oracle Cloud Agent features supported on the image.
-	* `is_management_supported` - Whether Oracle Cloud Agent can run all the available management plugins. 
-	* `is_monitoring_supported` - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance. 
+	* `is_management_supported` - This attribute is not used. 
+	* `is_monitoring_supported` - This attribute is not used. 
 * `base_image_id` - The OCID of the image originally used to launch the instance.
+* `billable_size_in_gbs` - The size of the internal storage for this image that is subject to billing (1 GB = 1,073,741,824 bytes).  Example: `100` 
 * `compartment_id` - The OCID of the compartment containing the instance you want to use as the basis for the image. 
 * `create_image_allowed` - Whether instances launched with this image can be used to create new images. For example, you cannot create an image of an Oracle Database instance.  Example: `true` 
 * `defined_tags` - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).  Example: `{"Operations.CostCenter": "42"}` 
@@ -183,6 +184,14 @@ The following attributes are exported:
 * `size_in_mbs` - The boot volume size for an instance launched from this image (1 MB = 1,048,576 bytes). Note this is not the same as the size of the image when it was exported or the actual size of the image.  Example: `47694` 
 * `state` - The current state of the image.
 * `time_created` - The date and time the image was created, in the format defined by [RFC3339](https://tools.ietf.org/html/rfc3339).  Example: `2016-08-25T21:10:29.600Z` 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 2 hours), when creating the Image
+	* `update` - (Defaults to 2 hours), when updating the Image
+	* `delete` - (Defaults to 2 hours), when destroying the Image
+
 
 ## Import
 

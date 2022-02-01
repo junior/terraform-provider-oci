@@ -68,14 +68,20 @@ variable "enterprise_manager_bridge_state" {
   default = ["ACTIVE"]
 }
 
+variable "compartment_id_in_subtree" {
+  default = true
+}
+
 // To Create a Enterprise Manager Bridge
 resource "oci_opsi_enterprise_manager_bridge" "test_enterprise_manager_bridge" {
   #Required
   compartment_id             = var.compartment_ocid
-  defined_tags               = "${map("${oci_identity_tag_namespace.tag-namespace1.name}.${oci_identity_tag.tag1.name}", "${var.enterprise_manager_bridge_defined_tags_value}")}"
   display_name               = var.enterprise_manager_bridge_display_name
-  freeform_tags              = var.enterprise_manager_bridge_freeform_tags
   object_storage_bucket_name = oci_objectstorage_bucket.test_bucket.name
+
+  #Optional
+  defined_tags               = "${map("${oci_identity_tag_namespace.tag-namespace1.name}.${oci_identity_tag.tag1.name}", "${var.enterprise_manager_bridge_defined_tags_value}")}"
+  freeform_tags              = var.enterprise_manager_bridge_freeform_tags
   description 		     = var.enterprise_manager_bridge_description
 }
 
@@ -87,6 +93,13 @@ output "enterprise_manager_bridge_id" {
 data "oci_opsi_enterprise_manager_bridges" "test_enterprise_manager_bridges" {
   compartment_id = var.compartment_ocid
   state          = var.enterprise_manager_bridge_state
+}
+
+// List EM Bridge present under a compartment having state ACTIVE in current and all subcompartments
+data "oci_opsi_enterprise_manager_bridges" "test_enterprise_manager_bridges2" {
+  compartment_id            = var.compartment_ocid
+  compartment_id_in_subtree = var.compartment_id_in_subtree
+  state                     = var.enterprise_manager_bridge_state
 }
 
 // Get EM Bridge for a particular id 

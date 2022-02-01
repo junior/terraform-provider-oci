@@ -51,6 +51,7 @@ Any change to a property that does not support update will force the destruction
 
 The following attributes are exported:
 
+* `billable_size_in_gbs` - Total storage size in GBs that will be charged.
 * `compartment_id` - The OCID of the compartment in which the container repository exists.
 * `created_by` - The id of the user or principal that created the resource.
 * `display_name` - The container repository name.
@@ -66,6 +67,14 @@ The following attributes are exported:
 * `state` - The current state of the container repository.
 * `time_created` - An RFC 3339 timestamp indicating when the repository was created.
 * `time_last_pushed` - An RFC 3339 timestamp indicating when an image was last pushed to the repository.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Container Repository
+	* `update` - (Defaults to 20 minutes), when updating the Container Repository
+	* `delete` - (Defaults to 20 minutes), when destroying the Container Repository
+
 
 ## Import
 

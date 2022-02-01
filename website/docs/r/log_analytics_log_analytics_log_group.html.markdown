@@ -10,7 +10,8 @@ description: |-
 # oci_log_analytics_log_analytics_log_group
 This resource provides the Log Analytics Log Group resource in Oracle Cloud Infrastructure Log Analytics service.
 
-Creates a new Log-Analytics group.
+Creates a new log group in the specified compartment with the input display name. You may also specify optional information such as description, defined tags, and free-form tags.
+
 
 ## Example Usage
 
@@ -55,6 +56,14 @@ The following attributes are exported:
 * `id` - The log analytics entity OCID. This ID is a reference used by log analytics features and it represents a resource that is provisioned and managed by the customer on their premises or on the cloud. 
 * `time_created` - The date and time the resource was created, in the format defined by RFC3339. 
 * `time_updated` - The date and time the resource was last updated, in the format defined by RFC3339. 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Log Analytics Log Group
+	* `update` - (Defaults to 20 minutes), when updating the Log Analytics Log Group
+	* `delete` - (Defaults to 20 minutes), when destroying the Log Analytics Log Group
+
 
 ## Import
 

@@ -115,22 +115,32 @@ The generated `.tf` files contain the Terraform configuration with the resources
 * `list_export_services_path` - Path to output list of supported services in json format, must include json file name
 * `output_path` - Absolute path to output generated configurations and state files of the exported compartment
 * `services` - Comma-separated list of service resources to export. If not specified, all resources within the given compartment (which excludes identity resources) are exported. The following values can be specified:
+    * `ai_anomaly_detection` - Discovers ai_anomaly_detection resources within the specified compartment
     * `analytics` - Discovers analytics resources within the specified compartment
     * `apigateway` - Discovers apigateway resources within the specified compartment
+    * `apm` - Discovers apm resources within the specified compartment
+    * `apm_config` - Discovers apm_config resources within the specified compartment
+    * `apm_synthetics` - Discovers apm_synthetics resources within the specified compartment
     * `artifacts` - Discovers artifacts resources within the specified compartment
     * `auto_scaling` - Discovers auto_scaling resources within the specified compartment
+    * `bastion` - Discovers bastion resources within the specified compartment
     * `bds` - Discovers big data service resources within the specified compartment
     * `blockchain` - Discovers blockchain resources within the specified compartment
     * `budget` - Discovers budget resources across the entire tenancy
+    * `certificates_management` - Discovers certificates_management resources within the specified compartment
     * `cloud_guard` - Discovers cloud guard resources within the specified compartment
     * `containerengine` - Discovers containerengine resources within the specified compartment
     * `core` - Discovers compute, block storage, and networking resources within the specified compartment
+    * `data_labeling_service` - Discovers data_labeling_service resources within the specified compartment
     * `data_safe` - Discovers data_safe resources within the specified compartment
     * `database` - Discovers database resources within the specified compartment
+    * `database_migration` - Discovers database_migration resources within the specified compartment
+    * `database_tools` - Discovers database_tools resources within the specified compartment
     * `datacatalog` - Discovers datacatalog resources within the specified compartment
     * `dataflow` - Discovers dataflow resources within the specified compartment
     * `dataintegration` - Discovers dataintegration resources within the specified compartment
     * `datascience` - Discovers datascience resources within the specified compartment
+    * `devops` - Discovers devops resources within the specified compartment
     * `dns` - Discovers dns resources (except record) within the specified compartment
     * `email` - Discovers email_sender resources within the specified compartment
     * `events` - Discovers events resources within the specified compartment
@@ -139,10 +149,13 @@ The generated `.tf` files contain the Terraform configuration with the resources
     * `golden_gate` - Discovers golden_gate resources within the specified compartment
     * `health_checks` - Discovers health_checks resources within the specified compartment
     * `identity` - Discovers identity resources across the entire tenancy
+    * `identity_data_plane` - Discovers identity_data_plane resources within the specified compartment
     * `integration` - Discovers integration resources within the specified compartment
+    * `jms` - Discovers jms resources within the specified compartment
     * `kms` - Discovers kms resources within the specified compartment
     * `limits` - Discovers limits resources across the entire tenancy
     * `load_balancer` - Discovers load balancer resources within the specified compartment
+    * `log_analytics` - Discovers log_analytics resources within the specified compartment
     * `logging` - Discovers logging resources within the specified compartment
     * `management_agent` - Discovers management_agent resources within the specified compartment
     * `marketplace` - Discovers marketplace resources within the specified compartment
@@ -156,13 +169,17 @@ The generated `.tf` files contain the Terraform configuration with the resources
     * `ocvp` - Discovers ocvp resources within the specified compartment
     * `oda` - Discovers oda resources within the specified compartment
     * `ons` - Discovers ons resources within the specified compartment
+    * `operator_access_control` - Discovers operator_access_control resources within the specified compartment
     * `opsi` - Discovers opsi resources within the specified compartment
     * `optimizer` - Discovers optimizer resources across the entire tenancy
     * `osmanagement` - Discovers osmanagement resources within the specified compartment
     * `sch` - Discovers sch resources within the specified compartment
     * `streaming` - Discovers streaming resources within the specified compartment
+    * `usage_proxy` - Discovers usage_proxy resources within the specified compartment
+    * `visual_builder` - Discovers visual_builder resources within the specified compartment
     * `vulnerability_scanning` - Discovers vulnerability_scanning resources within the specified compartment
     * `waas` - Discovers waas resources within the specified compartment
+    * `waf` - Discovers waf resources within the specified compartment
 * `tf_version` - The version of terraform syntax to generate for configurations. Default is v0.12. The state file will be written in v0.12 only. The allowed values are:
     * 0.11
     * 0.12
@@ -260,6 +277,13 @@ The list of supported resources can also be retrieved by running this command:
 terraform-provider-oci -command=list_export_resources
 ```
 
+ai_anomaly_detection
+    
+* oci\_ai\_anomaly\_detection\_data\_asset
+* oci\_ai\_anomaly\_detection\_model
+* oci\_ai\_anomaly\_detection\_project
+* oci\_ai\_anomaly\_detection\_ai\_private\_endpoint
+
 analytics
     
 * oci\_analytics\_analytics\_instance
@@ -271,20 +295,39 @@ apigateway
 * oci\_apigateway\_deployment
 * oci\_apigateway\_certificate
 
+apm
+    
+* oci\_apm\_apm\_domain
+
+apm_config
+    
+* oci\_apm\_config\_config
+
+apm_synthetics
+    
+* oci\_apm\_synthetics\_script
+* oci\_apm\_synthetics\_monitor
+
 artifacts
     
-* oci\_artifacts\_container\_configuration
 * oci\_artifacts\_container\_repository
 * oci\_artifacts\_container\_image\_signature
+* oci\_artifacts\_repository
 
 auto_scaling
     
 * oci\_autoscaling\_auto\_scaling\_configuration
 
+bastion
+    
+* oci\_bastion\_bastion
+* oci\_bastion\_session
+
 bds
     
 * oci\_bds\_bds\_instance
 * oci\_bds\_auto\_scaling\_configuration
+* oci\_bds\_bds\_instance\_api\_key
 
 blockchain
     
@@ -296,6 +339,12 @@ budget
     
 * oci\_budget\_budget
 * oci\_budget\_alert\_rule
+
+certificates_management
+    
+* oci\_certificates\_management\_ca\_bundle
+* oci\_certificates\_management\_certificate\_authority
+* oci\_certificates\_management\_certificate
 
 cloud_guard
     
@@ -359,15 +408,23 @@ core
 * oci\_core\_drg\_route\_table
 * oci\_core\_drg\_route\_distribution
 * oci\_core\_drg\_route\_table\_route\_rule
-* oci\_core\_drg\_route\_distribution\_statement
+
+data_labeling_service
+    
+* oci\_data\_labeling\_service\_dataset
 
 data_safe
     
 * oci\_data\_safe\_data\_safe\_private\_endpoint
+* oci\_data\_safe\_on\_prem\_connector
+* oci\_data\_safe\_target\_database
+* oci\_data\_safe\_security\_assessment
+* oci\_data\_safe\_user\_assessment
 
 database
     
 * oci\_database\_autonomous\_container\_database
+* oci\_database\_autonomous\_container\_database\_dataguard\_association
 * oci\_database\_autonomous\_database
 * oci\_database\_autonomous\_exadata\_infrastructure
 * oci\_database\_autonomous\_vm\_cluster
@@ -387,6 +444,20 @@ database
 * oci\_database\_external\_pluggable\_database
 * oci\_database\_external\_non\_container\_database
 * oci\_database\_external\_database\_connector
+* oci\_database\_pluggable\_database
+* oci\_database\_vm\_cluster\_add\_virtual\_machine
+* oci\_database\_vm\_cluster\_remove\_virtual\_machine
+* oci\_database\_cloud\_autonomous\_vm\_cluster
+
+database_migration
+    
+* oci\_database\_migration\_connection
+* oci\_database\_migration\_migration
+
+database_tools
+    
+* oci\_database\_tools\_database\_tools\_private\_endpoint
+* oci\_database\_tools\_database\_tools\_connection
 
 datacatalog
     
@@ -394,6 +465,7 @@ datacatalog
 * oci\_datacatalog\_data\_asset
 * oci\_datacatalog\_connection
 * oci\_datacatalog\_catalog\_private\_endpoint
+* oci\_datacatalog\_metastore
 
 dataflow
     
@@ -411,6 +483,25 @@ datascience
 * oci\_datascience\_model
 * oci\_datascience\_model\_provenance
 * oci\_datascience\_model\_deployment
+* oci\_datascience\_job
+* oci\_datascience\_job\_run
+
+devops
+    
+* oci\_devops\_project
+* oci\_devops\_deploy\_environment
+* oci\_devops\_deploy\_artifact
+* oci\_devops\_deploy\_pipeline
+* oci\_devops\_deploy\_stage
+* oci\_devops\_deployment
+* oci\_devops\_repository
+* oci\_devops\_repository\_ref
+* oci\_devops\_build\_pipeline
+* oci\_devops\_build\_run
+* oci\_devops\_connection
+* oci\_devops\_build\_pipeline\_stage
+* oci\_devops\_trigger
+* oci\_devops\_repository\_mirror
 
 dns
     
@@ -424,6 +515,8 @@ email
     
 * oci\_email\_suppression
 * oci\_email\_sender
+* oci\_email\_email\_domain
+* oci\_email\_dkim
 
 events
     
@@ -473,10 +566,21 @@ identity
 * oci\_identity\_tag\_namespace
 * oci\_identity\_tag
 * oci\_identity\_network\_source
+* oci\_identity\_domain
+* oci\_identity\_db\_credential
+* oci\_identity\_import\_standard\_tags\_management
+
+identity_data_plane
+    
+* oci\_identity\_data\_plane\_generate\_scoped\_access\_token
 
 integration
     
 * oci\_integration\_integration\_instance
+
+jms
+    
+* oci\_jms\_fleet
 
 kms
     
@@ -485,8 +589,6 @@ kms
 * oci\_kms\_vault
 * oci\_kms\_sign
 * oci\_kms\_verify
-* oci\_kms\_create\_replica
-* oci\_kms\_delete\_replica
 
 limits
     
@@ -503,6 +605,15 @@ load_balancer
 * oci\_load\_balancer\_path\_route\_set
 * oci\_load\_balancer\_load\_balancer\_routing\_policy
 * oci\_load\_balancer\_rule\_set
+
+log_analytics
+    
+* oci\_log\_analytics\_log\_analytics\_object\_collection\_rule
+* oci\_log\_analytics\_log\_analytics\_import\_custom\_content
+* oci\_log\_analytics\_namespace\_scheduled\_task
+* oci\_log\_analytics\_log\_analytics\_preferences\_management
+* oci\_log\_analytics\_log\_analytics\_unprocessed\_data\_bucket\_management
+* oci\_log\_analytics\_log\_analytics\_resource\_categories\_management
 
 logging
     
@@ -523,6 +634,7 @@ marketplace
 metering_computation
     
 * oci\_metering\_computation\_query
+* oci\_metering\_computation\_custom\_table
 
 monitoring
     
@@ -574,11 +686,22 @@ ons
 * oci\_ons\_notification\_topic
 * oci\_ons\_subscription
 
+operator_access_control
+    
+* oci\_operator\_access\_control\_operator\_control
+* oci\_operator\_access\_control\_operator\_control\_assignment
+
 opsi
     
 * oci\_opsi\_enterprise\_manager\_bridge
 * oci\_opsi\_database\_insight
 * oci\_opsi\_host\_insight
+* oci\_opsi\_exadata\_insight
+* oci\_opsi\_awr\_hub
+* oci\_opsi\_operations\_insights\_warehouse\_user
+* oci\_opsi\_operations\_insights\_warehouse
+* oci\_opsi\_operations\_insights\_warehouse\_download\_warehouse\_wallet
+* oci\_opsi\_operations\_insights\_warehouse\_rotate\_warehouse\_wallet
 
 optimizer
     
@@ -586,6 +709,7 @@ optimizer
 
 osmanagement
     
+* oci\_osmanagement\_managed\_instance
 * oci\_osmanagement\_managed\_instance\_group
 * oci\_osmanagement\_software\_source
 
@@ -599,17 +723,20 @@ streaming
 * oci\_streaming\_stream\_pool
 * oci\_streaming\_stream
 
+usage_proxy
+    
+* oci\_usage\_proxy\_subscription\_redeemable\_user
+
+visual_builder
+    
+* oci\_visual\_builder\_vb\_instance
+
 vulnerability_scanning
     
 * oci\_vulnerability\_scanning\_host\_scan\_recipe
 * oci\_vulnerability\_scanning\_host\_scan\_target
-* oci\_vulnerability\_scanning\_host\_agent\_scan\_result
-* oci\_vulnerability\_scanning\_host\_port\_scan\_result
-* oci\_vulnerability\_scanning\_host\_cis\_benchmark\_scan\_result
-* oci\_vulnerability\_scanning\_host\_endpoint\_protection\_scan\_result
 * oci\_vulnerability\_scanning\_container\_scan\_recipe
 * oci\_vulnerability\_scanning\_container\_scan\_target
-* oci\_vulnerability\_scanning\_container\_scan\_result
 
 waas
     
@@ -617,3 +744,9 @@ waas
 * oci\_waas\_custom\_protection\_rule
 * oci\_waas\_http\_redirect
 * oci\_waas\_waas\_policy
+
+waf
+    
+* oci\_waf\_web\_app\_firewall\_policy
+* oci\_waf\_web\_app\_firewall
+* oci\_waf\_network\_address\_list

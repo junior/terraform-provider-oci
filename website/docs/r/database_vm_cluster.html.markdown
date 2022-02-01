@@ -29,6 +29,7 @@ resource "oci_database_vm_cluster" "test_vm_cluster" {
 	#Optional
 	data_storage_size_in_tbs = var.vm_cluster_data_storage_size_in_tbs
 	db_node_storage_size_in_gbs = var.vm_cluster_db_node_storage_size_in_gbs
+	db_servers = var.vm_cluster_db_servers
 	defined_tags = var.vm_cluster_defined_tags
 	freeform_tags = {"Department"= "Finance"}
 	is_local_backup_enabled = var.vm_cluster_is_local_backup_enabled
@@ -47,6 +48,7 @@ The following arguments are supported:
 * `cpu_core_count` - (Required) (Updatable) The number of CPU cores to enable for the VM cluster. *Note:* If `cpu_core_count` is modified in `DISCONNECTED` state, the provider could experience a drift in Terraform state. To remediate this, refresh your Terraform state and update the configuration file when the Oracle Cloud Infrastructure connection is established.
 * `data_storage_size_in_tbs` - (Optional) (Updatable) The data disk group size to be allocated in TBs.
 * `db_node_storage_size_in_gbs` - (Optional) (Updatable) The local node storage to be allocated in GBs.
+* `db_servers` - (Optional) The list of Db server.
 * `defined_tags` - (Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). 
 * `display_name` - (Required) The user-friendly name for the VM cluster. The name does not need to be unique.
 * `exadata_infrastructure_id` - (Required) The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
@@ -70,8 +72,9 @@ The following attributes are exported:
 
 * `compartment_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 * `cpus_enabled` - The number of enabled CPU cores.
-* `data_storage_size_in_tbs` - Size, in terabytes, of the DATA disk group. 
+* `data_storage_size_in_tbs` - Size, in terabytes, of the DATA disk group.
 * `db_node_storage_size_in_gbs` - The local node storage allocated in GBs.
+* `db_servers` - The list of Db server.
 * `defined_tags` - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). 
 * `display_name` - The user-friendly name for the Exadata Cloud@Customer VM cluster. The name does not need to be unique.
 * `exadata_infrastructure_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the Exadata infrastructure.
@@ -87,9 +90,18 @@ The following attributes are exported:
 * `shape` - The shape of the Exadata infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance. 
 * `ssh_public_keys` - The public key portion of one or more key pairs used for SSH access to the VM cluster.
 * `state` - The current state of the VM cluster.
+* `system_version` - Operating system version of the image.
 * `time_created` - The date and time that the VM cluster was created.
 * `time_zone` - The time zone of the Exadata infrastructure. For details, see [Exadata Infrastructure Time Zones](https://docs.cloud.oracle.com/iaas/Content/Database/References/timezones.htm).
 * `vm_cluster_network_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the VM cluster network.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Vm Cluster
+	* `update` - (Defaults to 20 minutes), when updating the Vm Cluster
+	* `delete` - (Defaults to 20 minutes), when destroying the Vm Cluster
+
 
 ## Import
 

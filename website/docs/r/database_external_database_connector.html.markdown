@@ -50,7 +50,7 @@ resource "oci_database_external_database_connector" "test_external_database_conn
 The following arguments are supported:
 
 * `connection_credentials` - (Required) (Updatable) Credentials used to connect to the database. Currently only the `DETAILS` type is supported for creating MACS connector crendentials. 
-	* `credential_name` - (Required) (Updatable) The name of the credential information that used to connect to the database. The name should be in "x.y" format, where  the length of "x" has a maximum of 64 characters, and length of "y" has a maximum of 199 characters.  The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for  the "." character that separates the "x" and "y" portions of the name. *IMPORTANT* - The name must be unique within the Oracle Cloud Infrastructure region the credential is being created in. If you specify a name  that duplicates the name of another credential within the same Oracle Cloud Infrastructure region, you may overwrite or corrupt the credential that is already using the name.
+	* `credential_name` - (Required) (Updatable) The name of the credential information that used to connect to the database. The name should be in "x.y" format, where the length of "x" has a maximum of 64 characters, and length of "y" has a maximum of 199 characters. The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for the "." character that separates the "x" and "y" portions of the name. *IMPORTANT* - The name must be unique within the Oracle Cloud Infrastructure region the credential is being created in. If you specify a name that duplicates the name of another credential within the same Oracle Cloud Infrastructure region, you may overwrite or corrupt the credential that is already using the name.
 
 		For example: inventorydb.abc112233445566778899 
 	* `credential_type` - (Optional) (Updatable) The type of credential used to connect to the database.
@@ -79,7 +79,7 @@ The following attributes are exported:
 
 * `compartment_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 * `connection_credentials` - Credentials used to connect to the database. Currently only the `DETAILS` type is supported for creating MACS connector crendentials. 
-	* `credential_name` - The name of the credential information that used to connect to the database. The name should be in "x.y" format, where  the length of "x" has a maximum of 64 characters, and length of "y" has a maximum of 199 characters.  The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for  the "." character that separates the "x" and "y" portions of the name. *IMPORTANT* - The name must be unique within the Oracle Cloud Infrastructure region the credential is being created in. If you specify a name  that duplicates the name of another credential within the same Oracle Cloud Infrastructure region, you may overwrite or corrupt the credential that is already using the name.
+	* `credential_name` - The name of the credential information that used to connect to the database. The name should be in "x.y" format, where the length of "x" has a maximum of 64 characters, and length of "y" has a maximum of 199 characters. The name strings can contain letters, numbers and the underscore character only. Other characters are not valid, except for the "." character that separates the "x" and "y" portions of the name. *IMPORTANT* - The name must be unique within the Oracle Cloud Infrastructure region the credential is being created in. If you specify a name that duplicates the name of another credential within the same Oracle Cloud Infrastructure region, you may overwrite or corrupt the credential that is already using the name.
 
 		For example: inventorydb.abc112233445566778899 
 	* `credential_type` - The type of credential used to connect to the database.
@@ -103,6 +103,14 @@ The following attributes are exported:
 * `state` - The current lifecycle state of the external database connector resource.
 * `time_connection_status_last_updated` - The date and time the `connectionStatus` of this external connector was last updated.
 * `time_created` - The date and time the external connector was created.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the External Database Connector
+	* `update` - (Defaults to 20 minutes), when updating the External Database Connector
+	* `delete` - (Defaults to 20 minutes), when destroying the External Database Connector
+
 
 ## Import
 

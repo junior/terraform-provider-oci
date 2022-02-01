@@ -3,6 +3,7 @@
 TEST?=./...
 GOFMT_FILES?=$(if $(SERVICE), $$(find . -name '$(SERVICE)*.go' |grep -v vendor), $$(find . -name '*.go' |grep -v vendor))
 PKG_NAME=oci
+TEST_PKG_NAME=internal/integrationtest
 WEBSITE_REPO=github.com/hashicorp/terraform-website
 release_date=$(shell date -v +5d +%F)
 
@@ -33,6 +34,11 @@ sweep: fmtcheck gomodenv
 
 testacc: build
 	TF_ACC=1 $(prefix) go test $(TEST) -v $(TESTARGS) $(run_regex) $(test_tags) -timeout $(timeout)
+
+localinstall:
+	mkdir -p $(GOPATH)/bin/registry.terraform.io/hashicorp/oci/1.0.0/darwin_amd64
+	cp $(GOPATH)/bin/terraform-provider-oci $(HOME)/.terraform.d/plugins/registry.terraform.io/hashicorp/oci/1.0.0/darwin_amd64
+	cp $(GOPATH)/bin/terraform-provider-oci $(GOPATH)/bin/registry.terraform.io/hashicorp/oci/1.0.0/darwin_amd64
 
 vet:
 	@echo "go vet ."
@@ -72,7 +78,7 @@ errcheck:
 test-compile:
 	@if [ "$(TEST)" = "./..." ]; then \
 		echo "ERROR: Set TEST to a specific package. For example,"; \
-		echo "  make test-compile TEST=./$(PKG_NAME)"; \
+		echo "  make test-compile TEST=./$(TEST_PKG_NAME)"; \
 		exit 1; \
 	fi
 	go test -c $(TEST) $(TESTARGS)
@@ -100,8 +106,8 @@ get: ;go get golang.org/x/tools/cmd/goimports; go get github.com/mitchellh/gox
 ### `make update-version version=2.0.1`
 update-version:
 ifdef version
-	sed -i -e 's/ReleaseDate = ".*"/ReleaseDate = "$(release_date)"/g' oci/version.go
-	sed -i -e 's/Version = ".*"/Version = "$(version)"/g' oci/version.go && rm -f oci/version.go-e
+	sed -i -e 's/ReleaseDate = ".*"/ReleaseDate = "$(release_date)"/g' internal/globalvar/version.go
+	sed -i -e 's/Version = ".*"/Version = "$(version)"/g' internal/globalvar/version.go && rm -f internal/globalvar/version.go-e
 else
 	@echo Err! `make update-version` requires a version argument
 endif
@@ -109,7 +115,7 @@ endif
 ### `make release version=2.0.1`
 release: clean
 ifdef version
-	sed -i -e 's/Version = ".*"/Version = "$(version)"/g' oci/version.go && rm -f oci/version.go-e
+	sed -i -e 's/Version = ".*"/Version = "$(version)"/g' internal/globalvar/version.go && rm -f internal/globalvar/version.go-e
 ifdef platform
 	gox -output ./bin/{{.OS}}_{{.Arch}}/terraform-provider-oci_v$(version) -osarch=$(platform)
 else
@@ -146,3 +152,6 @@ ifdef version
 else
 	@echo Error! replace_sdk_version requires a version argument
 endif
+
+check-untagged-tests:
+	@sh -c "'$(CURDIR)/scripts/check-untagged-tests.sh' -s ''$(SERVICE)"

@@ -82,12 +82,21 @@ The following attributes are exported:
 * `service` - SERVICE data. Example: `{"service": {"IDCS": "value"}}` 
 * `state` - The current state of the file system.
 * `state_message` - An message describing the current state in more detail. For example, can be used to provide actionable information for a resource in Failed state.
+* `system_tags` - Usage of system tag keys. These predefined keys are scoped to namespaces. Example: `{"orcl-cloud.free-tier-retained": "true"}` 
 * `tenancy_id` - Tenancy Identifier
 * `tenancy_name` - Tenancy Name
 * `time_created` - The time the the OceInstance was created. An RFC3339 formatted datetime string
 * `time_updated` - The time the OceInstance was updated. An RFC3339 formatted datetime string
 * `upgrade_schedule` - Upgrade schedule type representing service to be upgraded immediately whenever latest version is released or delay upgrade of the service to previous released version 
 * `waf_primary_domain` - Web Application Firewall(WAF) primary domain
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 30 minutes), when creating the Oce Instance
+	* `update` - (Defaults to 20 minutes), when updating the Oce Instance
+	* `delete` - (Defaults to 20 minutes), when destroying the Oce Instance
+
 
 ## Import
 

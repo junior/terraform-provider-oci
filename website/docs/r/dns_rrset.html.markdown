@@ -10,7 +10,9 @@ description: |-
 # oci_dns_rrset
 This resource provides the Rrset resource in Oracle Cloud Infrastructure DNS service.
 
-Replaces records in the specified RRSet. RRSet with a `domain` and `rtype` is unique within a zone.
+Replaces records in the specified RRSet. For private zones, the scope query parameter is required with a
+value of `PRIVATE`. When the zone name is provided as a path parameter and `PRIVATE` is used for the scope
+query parameter then the viewId query parameter is required.
 
 ## Example Usage
 
@@ -69,6 +71,14 @@ The following attributes are exported:
 	* `rrset_version` - The latest version of the record's zone in which its RRSet differs from the preceding version. 
 	* `rtype` - The type of DNS record, such as A or CNAME. For more information, see [Resource Record (RR) TYPEs](https://www.iana.org/assignments/dns-parameters/dns-parameters.xhtml#dns-parameters-4). 
 	* `ttl` - The Time To Live for the record, in seconds.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Rrset
+	* `update` - (Defaults to 20 minutes), when updating the Rrset
+	* `delete` - (Defaults to 20 minutes), when destroying the Rrset
+
 
 ## Import
 

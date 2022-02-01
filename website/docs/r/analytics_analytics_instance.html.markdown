@@ -69,7 +69,6 @@ The following arguments are supported:
 * `idcs_access_token` - (Required) IDCS access token identifying a stripe and service administrator user. 
 * `license_type` - (Required) (Updatable) The license used for the service. 
 * `name` - (Required) The name of the Analytics instance. This name must be unique in the tenancy and cannot be changed. 
-* `state` - (Optional) (Updatable) The target state for the instance. Could be set to `ACTIVE` or `INACTIVE`. 
 * `network_endpoint_details` - (Optional) Base representation of a network endpoint. 
 	* `network_endpoint_type` - (Required) The type of network endpoint. 
 	* `subnet_id` - (Required when network_endpoint_type=PRIVATE) The subnet OCID for the private endpoint. 
@@ -78,6 +77,7 @@ The following arguments are supported:
 	* `whitelisted_vcns` - (Applicable when network_endpoint_type=PUBLIC) Virtual Cloud Networks allowed to access this network endpoint. 
 		* `id` - (Required when network_endpoint_type=PUBLIC) The Virtual Cloud Network OCID. 
 		* `whitelisted_ips` - (Applicable when network_endpoint_type=PUBLIC) Source IP addresses or IP address ranges igress rules. 
+* `state` - (Optional) (Updatable) The target state for the Analytics Instance. Could be set to `ACTIVE` or `INACTIVE`. 
 
 
 ** IMPORTANT **
@@ -127,6 +127,14 @@ The following attributes are exported:
 	* `key` - The vanity url unique identifier key. 
 	* `public_certificate` - PEM certificate for HTTPS connections. 
 	* `urls` - List of urls supported by this vanity URL definition (max of 3). 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 1 hours), when creating the Analytics Instance
+	* `update` - (Defaults to 1 hours), when updating the Analytics Instance
+	* `delete` - (Defaults to 1 hours), when destroying the Analytics Instance
+
 
 ## Import
 

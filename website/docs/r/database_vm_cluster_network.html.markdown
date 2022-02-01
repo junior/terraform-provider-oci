@@ -27,6 +27,10 @@ resource "oci_database_vm_cluster_network" "test_vm_cluster_network" {
 		hostname = var.vm_cluster_network_scans_hostname
 		ips = var.vm_cluster_network_scans_ips
 		port = var.vm_cluster_network_scans_port
+
+		#Optional
+		scan_listener_port_tcp = var.vm_cluster_network_scans_scan_listener_port_tcp
+		scan_listener_port_tcp_ssl = var.vm_cluster_network_scans_scan_listener_port_tcp_ssl
 	}
 	vm_networks {
 		#Required
@@ -69,7 +73,9 @@ The following arguments are supported:
 * `scans` - (Required) (Updatable) The SCAN details.
 	* `hostname` - (Required) (Updatable) The SCAN hostname.
 	* `ips` - (Required) (Updatable) The list of SCAN IP addresses. Three addresses should be provided.
-	* `port` - (Required) (Updatable) The SCAN port. Default is 1521.
+	* `port` - (Required) (Updatable) The SCAN TCPIP port. Default is 1521.
+	* `scan_listener_port_tcp` - (Optional) (Updatable) The SCAN TCPIP port. Default is 1521.
+	* `scan_listener_port_tcp_ssl` - (Optional) (Updatable) The SCAN TCPIP SSL port. Default is 2484.
 * `validate_vm_cluster_network` - (Optional) (Updatable) A boolean flag indicating whether or not to validate VM cluster network after creation. Updates are not allowed on validated exadata VM cluster network. Note: Deleting a [VM Cluster](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/resources/database_vm_cluster) resource puts a VM Cluster Network in `REQUIRES_VALIDATION` state. This results in `After applying this step and refreshing, the plan was not empty` error and users should apply the terraform configuration again to validate the VM Cluster Network.
 * `vm_networks` - (Required) (Updatable) Details of the client and backup networks.
 	* `domain_name` - (Required) (Updatable) The network domain name.
@@ -103,7 +109,9 @@ The following attributes are exported:
 * `scans` - The SCAN details.
 	* `hostname` - The SCAN hostname.
 	* `ips` - The list of SCAN IP addresses. Three addresses should be provided.
-	* `port` - The SCAN port. Default is 1521.
+	* `port` - The SCAN TCPIP port. Default is 1521.
+	* `scan_listener_port_tcp` - The SCAN TCPIP port. Default is 1521.
+	* `scan_listener_port_tcp_ssl` - The SCAN TCPIP SSL port. Default is 2484.
 * `state` - The current state of the VM cluster network.
 * `time_created` - The date and time when the VM cluster network was created.
 * `vm_cluster_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the associated VM Cluster.
@@ -118,6 +126,14 @@ The following attributes are exported:
 		* `vip` - The node virtual IP (VIP) address.
 		* `vip_hostname` - The node virtual IP (VIP) host name.
 	* `vlan_id` - The network VLAN ID.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Vm Cluster Network
+	* `update` - (Defaults to 20 minutes), when updating the Vm Cluster Network
+	* `delete` - (Defaults to 20 minutes), when destroying the Vm Cluster Network
+
 
 ## Import
 

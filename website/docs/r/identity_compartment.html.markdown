@@ -56,7 +56,6 @@ The following arguments are supported:
 * `name` - (Required) (Updatable) The name you assign to the compartment during creation. The name must be unique across all compartments in the parent compartment. Avoid entering confidential information. 
 * `enable_delete` - (Optional) Defaults to false. If omitted or set to false the provider will implicitly import the compartment if there is a name collision, and will not actually delete the compartment on destroy or removal of the resource declaration. If set to true, the provider will throw an error on a name collision with another compartment, and will attempt to delete the compartment on destroy or removal of the resource declaration.
 
-
 ** IMPORTANT **
 Any change to a property that does not support update will force the destruction and recreation of the resource with the new property values
 
@@ -74,6 +73,14 @@ The following attributes are exported:
 * `name` - The name you assign to the compartment during creation. The name must be unique across all compartments in the parent. Avoid entering confidential information. 
 * `state` - The compartment's current state.
 * `time_created` - Date and time the compartment was created, in the format defined by RFC3339.  Example: `2016-08-25T21:10:29.600Z` 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Compartment
+	* `update` - (Defaults to 20 minutes), when updating the Compartment
+	* `delete` - (Defaults to 90 minutes), when destroying the Compartment
+
 
 ## Import
 

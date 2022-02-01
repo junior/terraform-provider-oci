@@ -32,8 +32,8 @@ The following arguments are supported:
 
 The following attributes are exported:
 
-* `compartment_id` - The OCID of the compartment containing the cross-connect group.
-* `cross_connect_group_id` - The OCID of the cross-connect group this cross-connect belongs to (if any). 
+* `compartment_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment containing the cross-connect group.
+* `cross_connect_group_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the cross-connect group this cross-connect belongs to (if any). 
 * `customer_reference_name` - A reference name or identifier for the physical fiber connection that this cross-connect uses. 
 * `defined_tags` - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).  Example: `{"Operations.CostCenter": "42"}` 
 * `display_name` - A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. 

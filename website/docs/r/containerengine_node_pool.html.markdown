@@ -31,6 +31,20 @@ resource "oci_containerengine_node_pool" "test_node_pool" {
 		key = var.node_pool_initial_node_labels_key
 		value = var.node_pool_initial_node_labels_value
 	}
+	node_config_details {
+		#Required
+		placement_configs {
+			#Required
+			availability_domain = var.node_pool_node_config_details_placement_configs_availability_domain
+			subnet_id = oci_core_subnet.test_subnet.id
+		}
+		size = var.node_pool_node_config_details_size
+
+		#Optional
+		is_pv_encryption_in_transit_enabled = var.node_pool_node_config_details_is_pv_encryption_in_transit_enabled
+		kms_key_id = oci_kms_key.test_key.id
+		nsg_ids = var.node_pool_node_config_details_nsg_ids
+	}
 	node_image_name = oci_core_image.test_image.name
 	node_metadata = var.node_pool_node_metadata
 	node_shape_config {
@@ -64,6 +78,9 @@ The following arguments are supported:
 * `kubernetes_version` - (Required) (Updatable) The version of Kubernetes to install on the nodes in the node pool.
 * `name` - (Required) (Updatable) The name of the node pool. Avoid entering confidential information.
 * `node_config_details` - (Optional) (Updatable) The configuration of nodes in the node pool. Exactly one of the subnetIds or nodeConfigDetails properties must be specified. 
+	* `is_pv_encryption_in_transit_enabled` - (Optional) (Updatable) Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot volumes. The default value is false.
+	* `kms_key_id` - (Optional) (Updatable) The OCID of the Key Management Service key assigned to the boot volume.
+	* `nsg_ids` - (Optional) (Updatable) The OCIDs of the Network Security Group(s) to associate nodes for this node pool with. For more information about NSGs, see [NetworkSecurityGroup](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/). 
 	* `placement_configs` - (Required) (Updatable) The placement configurations for the node pool. Provide one placement configuration for each availability domain in which you intend to launch a node.
 
 		To use the node pool with a regional subnet, provide a placement configuration for each availability domain, and include the regional subnet in each placement configuration. 
@@ -102,6 +119,9 @@ The following attributes are exported:
 * `kubernetes_version` - The version of Kubernetes running on the nodes in the node pool.
 * `name` - The name of the node pool.
 * `node_config_details` - The configuration of nodes in the node pool.
+	* `is_pv_encryption_in_transit_enabled` - Whether to enable in-transit encryption for the data volume's paravirtualized attachment. This field applies to both block volumes and boot volumes. The default value is false.
+	* `kms_key_id` - The OCID of the Key Management Service key assigned to the boot volume.
+	* `nsg_ids` - The OCIDs of the Network Security Group(s) to associate nodes for this node pool with. For more information about NSGs, see [NetworkSecurityGroup](https://docs.cloud.oracle.com/iaas/api/#/en/iaas/20160918/NetworkSecurityGroup/). 
 	* `placement_configs` - The placement configurations for the node pool. Provide one placement configuration for each availability domain in which you intend to launch a node.
 
 		To use the node pool with a regional subnet, provide a placement configuration for each availability domain, and include the regional subnet in each placement configuration. 
@@ -142,6 +162,14 @@ The following attributes are exported:
 * `quantity_per_subnet` - The number of nodes in each subnet.
 * `ssh_public_key` - The SSH public key on each node in the node pool on launch.
 * `subnet_ids` - The OCIDs of the subnets in which to place nodes for this node pool.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 50 minutes), when creating the Node Pool
+	* `update` - (Defaults to 50 minutes), when updating the Node Pool
+	* `delete` - (Defaults to 50 minutes), when destroying the Node Pool
+
 
 ## Import
 

@@ -32,6 +32,7 @@ resource "oci_dataflow_invoke_run" "test_invoke_run" {
 	executor_shape = var.invoke_run_executor_shape
 	freeform_tags = {"Department"= "Finance"}
 	logs_bucket_uri = var.invoke_run_logs_bucket_uri
+	metastore_id = var.metastore_id
 	num_executors = var.invoke_run_num_executors
 	parameters {
 		#Required
@@ -39,6 +40,7 @@ resource "oci_dataflow_invoke_run" "test_invoke_run" {
 		value = var.invoke_run_parameters_value
 	}
 	spark_version = var.invoke_run_spark_version
+	type = var.invoke_run_type
 	warehouse_bucket_uri = var.invoke_run_warehouse_bucket_uri
 }
 ```
@@ -60,11 +62,13 @@ The following arguments are supported:
 * `executor_shape` - (Optional) The VM shape for the executors. Sets the executor cores and memory. 
 * `freeform_tags` - (Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: `{"Department": "Finance"}` 
 * `logs_bucket_uri` - (Optional) An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+* `metastore_id` - (Optional) The OCID of Oracle Cloud Infrastructure Hive Metastore. 
 * `num_executors` - (Optional) The number of executor VMs requested. 
 * `parameters` - (Optional) An array of name/value pairs used to fill placeholders found in properties like `Application.arguments`.  The name must be a string of one or more word characters (a-z, A-Z, 0-9, _).  The value can be a string of 0 or more characters of any kind. Example:  [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ] 
 	* `name` - (Required) The name of the parameter.  It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file" 
 	* `value` - (Required) The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}" 
 * `spark_version` - (Optional) The Spark version utilized to run the application. This value may be set if applicationId is not since the Spark version will be taken from the associated application. 
+* `type` - (Optional) The Spark application processing type. 
 * `warehouse_bucket_uri` - (Optional) An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
 
 
@@ -94,6 +98,7 @@ The following attributes are exported:
 * `language` - The Spark language. 
 * `lifecycle_details` - The detailed messages about the lifecycle state. 
 * `logs_bucket_uri` - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+* `metastore_id` - The OCID of Oracle Cloud Infrastructure Hive Metastore. 
 * `num_executors` - The number of executor VMs requested. 
 * `opc_request_id` - Unique Oracle assigned identifier for the request. If you need to contact Oracle about a particular request, please provide the request ID. 
 * `owner_principal_id` - The OCID of the user who created the resource. 
@@ -112,7 +117,16 @@ The following attributes are exported:
 * `time_created` - The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
 * `time_updated` - The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
 * `total_ocpu` - The total number of oCPU requested by the run. 
+* `type` - The Spark application processing type. 
 * `warehouse_bucket_uri` - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Invoke Run
+	* `update` - (Defaults to 20 minutes), when updating the Invoke Run
+	* `delete` - (Defaults to 20 minutes), when destroying the Invoke Run
+
 
 ## Import
 

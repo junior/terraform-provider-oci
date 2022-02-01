@@ -10,9 +10,9 @@ description: |-
 # oci_database_autonomous_exadata_infrastructure
 This resource provides the Autonomous Exadata Infrastructure resource in Oracle Cloud Infrastructure Database service.
 
-Creates a new Autonomous Exadata Infrastructure in the specified compartment and availability domain.
+**Deprecated** To create a new Autonomous Database system on dedicated Exadata Infrastructure, use the [CreateCloudExadataInfrastructure](https://docs.cloud.oracle.com/iaas/api/#/en/database/latest/CloudExadataInfrastructure/CreateCloudExadataInfrastructure) and [CreateCloudAutonomousVmCluster](https://docs.cloud.oracle.com/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/CreateCloudAutonomousVmCluster) operations instead. Note that to create an Autonomous VM cluster, you must have an existing Exadata Infrastructure resource to contain the VM cluster.
 
-
+## Note :- Autonomous Exadata Infrastructure is now end-of-life.Please provision cloud autonomous vm cluster instead. 
 ## Example Usage
 
 ```hcl
@@ -124,6 +124,14 @@ The following attributes are exported:
 	These subnets are used by the Oracle Clusterware private interconnect on the database instance. Specifying an overlapping subnet will cause the private interconnect to malfunction. This restriction applies to both the client subnet and backup subnet. 
 * `time_created` - The date and time the Autonomous Exadata Infrastructure was created.
 * `zone_id` - The OCID of the zone the Autonomous Exadata Infrastructure is associated with. 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 12 hours), when creating the Autonomous Exadata Infrastructure
+	* `update` - (Defaults to 12 hours), when updating the Autonomous Exadata Infrastructure
+	* `delete` - (Defaults to 12 hours), when destroying the Autonomous Exadata Infrastructure
+
 
 ## Import
 

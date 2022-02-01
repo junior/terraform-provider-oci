@@ -1,3 +1,315 @@
+## 4.61.0 (January 26, 2022)
+
+### Added
+support for - Cluster Network: new optional parameter to Update API
+- Support for EM managed host support for Solaris/SunOS in OPSI
+- Support for structured streaming for Data Flow
+- Documention change for Cross Region ADG
+
+## 4.60.0 (January 19, 2022)
+
+### Added
+- Autonomous Data Guard v2-Observer Support
+- Support for Visual Builder Runtime
+- Support for container engine boot volume encryption
+- Support for - OCI - Data Labeling Servic
+- Support For - Cross Region Volume Group Replication
+- Support Scale Storage separately for DATA and RECO for VMDB
+- Support for ADBS refreshable clone reconnect
+- Support For - Standard Tags
+- Support for allow customer to choose Dataguard type
+- Support for - DevOps Project Service - fixed defined tags assertion test case fix
+
+## 4.59.0 (January 12, 2022)
+
+### Added
+- Support for allow customer to choose Dataguard type
+- Support For - Standard Tags
+- Support for - DevOps Project Service - fixed defined tags assertion test case fix
+- Support for BDS - Object Store Integration
+- Support for IPv6 support on Network Load Balancer
+- Support for NLB Support Multiple Protocol on Same Listener
+
+## 4.58.0 (January 05, 2022)
+
+### Bug Fix
+- Reverting `ocpu_count` to be `optional` in `oci_database_cloud_vm_cluster`
+
+## 4.57.0 (December 15, 2021)
+
+### Added
+- Support Node Replacement
+- Client mTLS Support
+- Support for Cloud VM cluster resource
+- Support for Identity IAM DB password
+- Support for OPSI AWR Hub
+- Support for Data Catalog 2.2
+- Support for dimensions in monitoring target
+- Support for auto-stop on autonomous database
+
+### Bug Fix
+- Support for Service Manager Proxy API
+
+## 4.56.0 (December 08, 2021)
+
+### Added
+- Support for APP MGMT : API to Discover Ebusiness suite
+- Support for security baseline improvements for Java Management Service
+- Support for database_db_nodes_data_source to include the attribute db_node_id
+- Support for Logging Analytics Categories and Entity Topology
+- Support for KMS key version in ADB-D
+- Support for Golden Gate RAC databases
+
+### Bug Fix
+- Change target resource id to optional for bastion session creation
+
+## 4.55.0 (December 01, 2021)
+
+### Added
+- Support for C3: Customer Experience Enhancements
+- Support Advanced Management of ADB-S
+- Support for Blockchain Platform API enhancements
+- Support for cross compartment in OPSI service
+- Support for DBM SQL Tuning Advisor
+- Support for APM Domain termination Workflow
+- Support for Advanced Management of ADB-S
+- Support for Golden Gate backup size
+- Support for database management users added
+
+## 4.54.0 (November 30, 2021)
+
+### Fixed
+- Recovery from panic in getResourceOCID
+- NLB Resource Discovery - Avoiding duplication for backend sets
+
+## 4.53.0 (November 18, 2021)
+
+### Added
+- Support for Service Manager Proxy service
+- Support for Oracle Cloud Advisor v2
+- Support for TDE Wallet Password Optional for ExaCS and DBCS
+- Support for Encrypted FastConnect
+
+## 4.52.0 (November 10, 2021)
+
+### Added
+- Support for Operator Access Control Service
+
+## 4.51.0 (November 03, 2021)
+
+### Added
+- Support for Identity domains
+- Support for Oracle support reward service
+- Database Migration data sources added
+- Support for ExaCS Scan listener port customization
+- Support for Database tool project
+
+## 4.50.0 (October 27, 2021)
+
+### Added
+- Support for devops build and repository
+- Support for Multi AD deployments for oci_ocvp_esxi_host
+- Support for OPSI Exadata Insights add EM Managed external host support
+– Support for OCI Certificates Integration with Load Balancer
+
+## 4.49.0 (October 20, 2021)
+
+### Added
+- Support for Non-CDB to PDB Conversion
+- support to provide database software image as user input while creating db system from backup
+- Support for db_unique_name and SID for primary and standby in DG association
+- Support for Logging Analytics Cedar Release
+- Support for VM Node Subsetting
+
+## 4.48.0 (October 13, 2021)
+
+### Added
+- Support for APM Configuration Service
+- Support for network_configuration in oci_apm_synthetics_monitor resource
+- Support for WAF service
+- Support for Log Analytics Scheduled Tasks
+- Support for Data Labeling Service
+- Support for oci_log_analytics_log_sets_count data_source
+- Support for Server side encryption using object specific KMS key
+
+## 4.47.0 (October 06, 2021)
+
+### Added
+- Support for MySQL MDS Outbound replication added
+- Support for GoldenGate deployment upgrades
+- Support for scheduled job status in database management
+- Operator driven backup
+- Gateway plugin support for Management Agent
+
+## 4.46.0 (September 29, 2021)
+
+### Added
+- Support for oneWay TLS support for ADBS
+- Support for Functions Network Security Group
+- Support for Signed Image Functions
+- Support for NSGs in API Gateway
+- Migrate Data Safe service console to OCI console
+- Publisher Map feature Monitoring added to Email
+
+### Deprecated
+-  Database Migration service will be deprecated
+
+## 4.45.0 (September 22, 2021)
+
+### Added
+- Support for source path based upload in `oci_generic_artifacts_content_artifact_by_path` 
+
+## 4.44.0 (September 15, 2021)
+
+### Added
+- Support InstanceConsoleConnection API with new serviceHostKeyFingerprint Property 
+- Support for Data science ML jobs added
+- Support for Logging Analytics Import Custom Content
+
+### Notes
+- Disabled resource discovery on resource `oci_core_drg_route_distribution_statement`
+- Support for Shielded instances added to `core` resources
+
+## 4.43.0 (September 08, 2021)
+
+### Added
+- Support change compartment using lifecycle state
+- Support retry for Eventually consistency failure
+- Support for Count API added to `os_management` resource
+- Support for cloud databases in Database Management
+- Support for Metrics and Perfhub for BM/VM and ExaCS 
+
+## 4.42.0 (September 01, 2021)
+
+### Added
+- Support for reporting in osmanagement
+
+## 4.41.0 (August 25, 2021)
+
+### Added
+- Support for Custom Listener Port added to `database`
+- Support ignore API key when using InstancePrincipal authentication
+
+## 4.40.0 (August 18, 2021)
+
+### Added
+- Support for service AI Anomaly detection added
+- Support for container scan recipe and target for vulnerability scanning.
+
+## 4.39.0 (August 11, 2021)
+
+### Added
+- Support for network error retry
+- Documentation updated for Log Analytics Management Dashboard
+
+### Fixed
+- Removed default value for `assign_private_dns_record` in `oci_core_vnic_attachment`
+
+## 4.38.0 (August 04, 2021)
+
+### Added
+- Support for metastore integration added to `dataflow`
+- Support for Cross-Region Copy of Volume Group Backups in `core` added
+- Support for Network Bonding added to `ExaCS`
+- Support for ODSC - Model Store V2	
+- Support for `oci_log_analytics_log_analytics_object_collection_rule` resource
+
+## 4.37.0 (July 28, 2021)
+
+### Added
+- Support for oci_metering_computation_custom_table
+- Support for ExaCS Customer Contact
+- Support for Email Authentication: DKIM API
+
+### Fixed
+- Update issue in `oci_database_autonomous_database` - Issue [1417](https://github.com/terraform-providers/terraform-provider-oci/issues/1417)
+
+## 4.36.0 (July 21, 2021)
+
+### Added
+- Support for Data Guard Protection Modes
+- Support for ExaCC GI upgrade
+- Support for ExaCC DOMU OS Update
+
+## 4.35.0 (July 14, 2021)
+
+### Added
+- Support for Oracle distribution of Hadoop with Big Data service
+- Support for APM Synthetics service added
+- Support for Regional VLANs added to `core`
+- Support added for VCN DNS Namespace Collision Remediation
+
+### Deprecated
+- Field `tsig` has been removed from `oci_dns_zone` resource and will be a breaking change for customers who have it defined in their Terraform configuration file
+
+## 4.34.0 (July 07, 2021)
+
+### Added
+- Support for Starter license type for OCE
+
+## 4.33.0 (June 30, 2021)
+
+### Added
+- Support for OKE Network Security Group (NSG)
+- Support for Metastore in Data Catalog
+- Support for ATP-D: Fractional OCPUs
+- Support for Developer Lifecycle CD Service
+
+## 4.32.0 (June 23, 2021)
+
+### Added
+- Support for Pluggable Database added
+- Support for APM Domain service added
+- Support for Database Migration service added
+
+## 4.31.0 (June 16, 2021)
+
+### Added
+- Support for Data Safe target database registration
+- Support for Elastic storage for ExaCC
+- Support for Migrate VCN status added to container engine
+- Support for Spark 3.0 added in data flow
+
+## 4.30.0 (June 09, 2021)
+
+### Added
+- Support for Higher performance volumes added to `core`
+- Support for End-to-end encryption for Bare Metal hosts to `core`
+- Support for Java Management Service
+
+### Fixed
+- Removed `oci_artifacts_container_configuration` from resource discovery due to its non-applicability.
+- Fix documentation for `oci_mysql_heat_wave_cluster` and `oci_core_drg_attachment`
+
+## 4.29.0 (June 02, 2021)
+
+### Added
+- Support create an endpoint for listing fully hydrated NSGs attached to a given VLAN
+- Support ADBS: Customer Managed Keys (Integration Key Management System)
+- Support for Operations Insights External Databases added
+- Support for Custom Images in Databases resource
+
+### Fixed
+- Doc update for `export_set` resource in `file_storage`
+- Fixed skewed doc rendering for `analytics` resources
+- Fixed functions to send `traceConfig` only when updated in update request
+- Doc update for `oci_core_ipsec_connection_tunnel_management` examples
+
+## 4.28.0 (May 26, 2021)
+
+### Added
+- Support API Gateway Request Validation policies
+- Support HCX Enterprise Add-on for `OCVP` service
+- Support for Dynamic Limits
+- Support for Bastion Service
+- Support charge for Container Images and Generic Artifacts 
+- Support for Generic Artifacts Service
+- Support Update `DrgAttachment` of types `Virtual_Circuit`, `RPC` and `IPSec`
+- Support for E3 Flex Notebooks added to `datascience`
+- Support for Non-Rolling patch mode added to `database_maintenance_run_resource`
+- Support for update compartment for `oci_core_default_security_list`, `oci_core_default_dhcp_options`, `oci_core_default_route_table`
+- Support for Charge for Custom Images in core resource
+
 ## 4.27.0 (May 19, 2021)
 
 ### Added

@@ -10,7 +10,7 @@ description: |-
 # oci_dataflow_private_endpoint
 This resource provides the Private Endpoint resource in Oracle Cloud Infrastructure Data Flow service.
 
-Creates a private endpoint to be used by an application.
+Creates a private endpoint to be used by applications.
 
 
 ## Example Usage
@@ -70,6 +70,14 @@ The following attributes are exported:
 * `subnet_id` - The OCID of a subnet. 
 * `time_created` - The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
 * `time_updated` - The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Private Endpoint
+	* `update` - (Defaults to 20 minutes), when updating the Private Endpoint
+	* `delete` - (Defaults to 20 minutes), when destroying the Private Endpoint
+
 
 ## Import
 

@@ -10,7 +10,8 @@ description: |-
 # Data Source: oci_database_autonomous_vm_cluster
 This data source provides details about a specific Autonomous Vm Cluster resource in Oracle Cloud Infrastructure Database service.
 
-Gets information about the specified Autonomous VM cluster for an Exadata Cloud@Customer system.
+Gets information about the specified Autonomous VM cluster for an Exadata Cloud@Customer system. To get information about an Autonomous VM Cluster in the Oracle cloud, see [GetCloudAutonomousVmCluster](https://docs.cloud.oracle.com/iaas/api/#/en/database/latest/CloudAutonomousVmCluster/GetCloudAutonomousVmCluster). 
+
 
 ## Example Usage
 
@@ -36,6 +37,7 @@ The following attributes are exported:
 * `available_data_storage_size_in_tbs` - The data storage available in TBs
 * `compartment_id` - The [OCID](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/identifiers.htm) of the compartment.
 * `cpus_enabled` - The number of enabled CPU cores.
+* `data_storage_size_in_gb` - The total data storage allocated in GBs.
 * `data_storage_size_in_tbs` - The total data storage allocated in TBs
 * `db_node_storage_size_in_gbs` - The local node storage allocated in GBs.
 * `defined_tags` - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). 
@@ -47,6 +49,7 @@ The following attributes are exported:
 * `license_model` - The Oracle license model that applies to the Autonomous VM cluster. The default is LICENSE_INCLUDED. 
 * `lifecycle_details` - Additional information about the current lifecycle state.
 * `memory_size_in_gbs` - The memory allocated in GBs.
+* `ocpus_enabled` - The number of enabled OCPU cores.
 * `state` - The current state of the Autonomous VM cluster.
 * `time_created` - The date and time that the Autonomous VM cluster was created.
 * `time_zone` - The time zone to use for the Autonomous VM cluster. For details, see [DB System Time Zones](https://docs.cloud.oracle.com/iaas/Content/Database/References/timezones.htm).

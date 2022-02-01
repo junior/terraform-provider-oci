@@ -1,4 +1,3 @@
-
 ---
 subcategory: "Analytics"
 layout: "oci"
@@ -51,6 +50,14 @@ Any change to a property that does not support update will force the destruction
 ## Attributes Reference
 
 The following attributes are exported:
+
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Analytics Instance Vanity Url
+	* `update` - (Defaults to 20 minutes), when updating the Analytics Instance Vanity Url
+	* `delete` - (Defaults to 20 minutes), when destroying the Analytics Instance Vanity Url
 
 
 ## Import

@@ -75,7 +75,7 @@ The following attributes are exported:
 * `backends` - Array of backends. 
 	* `ip_address` - The IP address of the backend server. Example: `10.0.0.3` 
 	* `is_backup` - Whether the network load balancer should treat this server as a backup unit. If `true`, then the network load balancer forwards no ingress traffic to this backend server unless all other backend servers not marked as "isBackup" fail the health check policy.  Example: `false` 
-	* `is_drain` - Whether the network load balancer should drain this server. Servers marked "isDrain" receive no  incoming traffic.  Example: `false` 
+	* `is_drain` - Whether the network load balancer should drain this server. Servers marked "isDrain" receive no incoming traffic.  Example: `false` 
 	* `is_offline` - Whether the network load balancer should treat this server as offline. Offline servers receive no incoming traffic.  Example: `false` 
 	* `name` - A read-only field showing the IP address/IP OCID and port that uniquely identify this backend server in the backend set.  Example: `10.0.0.3:8080`, or `ocid1.privateip..oc1.<var>&lt;unique_ID&gt;</var>:443` or `10.0.0.3:0` 
 	* `port` - The communication port for the backend server.  Example: `8080` 
@@ -99,6 +99,14 @@ The following attributes are exported:
 
 	Example: `example_backend_set` 
 * `policy` - The network load balancer policy for the backend set.  Example: `FIVE_TUPLE` 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Backend Set
+	* `update` - (Defaults to 20 minutes), when updating the Backend Set
+	* `delete` - (Defaults to 20 minutes), when destroying the Backend Set
+
 
 ## Import
 

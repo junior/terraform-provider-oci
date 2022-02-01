@@ -37,12 +37,14 @@ resource "oci_dataflow_application" "test_application" {
 	execute = var.application_execute
 	freeform_tags = {"Department"= "Finance"}
 	logs_bucket_uri = var.application_logs_bucket_uri
+	metastore_id = var.metastore_id
 	parameters {
 		#Required
 		name = var.application_parameters_name
 		value = var.application_parameters_value
 	}
 	private_endpoint_id = oci_dataflow_private_endpoint.test_private_endpoint.id
+	type = var.application_type
 	warehouse_bucket_uri = var.application_warehouse_bucket_uri
 }
 ```
@@ -66,12 +68,14 @@ The following arguments are supported:
 * `freeform_tags` - (Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm). Example: `{"Department": "Finance"}` 
 * `language` - (Required) (Updatable) The Spark language. 
 * `logs_bucket_uri` - (Optional) (Updatable) An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+* `metastore_id` - (Optional) (Updatable) The OCID of Oracle Cloud Infrastructure Hive Metastore. 
 * `num_executors` - (Required) (Updatable) The number of executor VMs requested. 
 * `parameters` - (Optional) (Updatable) An array of name/value pairs used to fill placeholders found in properties like `Application.arguments`.  The name must be a string of one or more word characters (a-z, A-Z, 0-9, _).  The value can be a string of 0 or more characters of any kind. Example:  [ { name: "iterations", value: "10"}, { name: "input_file", value: "mydata.xml" }, { name: "variable_x", value: "${x}"} ] 
 	* `name` - (Required) (Updatable) The name of the parameter.  It must be a string of one or more word characters (a-z, A-Z, 0-9, _). Examples: "iterations", "input_file" 
 	* `value` - (Required) (Updatable) The value of the parameter. It must be a string of 0 or more characters of any kind. Examples: "" (empty string), "10", "mydata.xml", "${x}" 
 * `private_endpoint_id` - (Optional) (Updatable) The OCID of a private endpoint. 
 * `spark_version` - (Required) (Updatable) The Spark version utilized to run the application. 
+* `type` - (Optional) The Spark application processing type. 
 * `warehouse_bucket_uri` - (Optional) (Updatable) An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
 
 
@@ -98,6 +102,7 @@ The following attributes are exported:
 * `id` - The application ID. 
 * `language` - The Spark language. 
 * `logs_bucket_uri` - An Oracle Cloud Infrastructure URI of the bucket where the Spark job logs are to be uploaded. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+* `metastore_id` - The OCID of Oracle Cloud Infrastructure Hive Metastore. 
 * `num_executors` - The number of executor VMs requested. 
 * `owner_principal_id` - The OCID of the user who created the resource. 
 * `owner_user_name` - The username of the user who created the resource.  If the username of the owner does not exist, `null` will be returned and the caller should refer to the ownerPrincipalId value instead. 
@@ -109,7 +114,16 @@ The following attributes are exported:
 * `state` - The current state of this application. 
 * `time_created` - The date and time a application was created, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
 * `time_updated` - The date and time a application was updated, expressed in [RFC 3339](https://tools.ietf.org/html/rfc3339) timestamp format. Example: `2018-04-03T21:10:29.600Z` 
+* `type` - The Spark application processing type. 
 * `warehouse_bucket_uri` - An Oracle Cloud Infrastructure URI of the bucket to be used as default warehouse directory for BATCH SQL runs. See https://docs.cloud.oracle.com/iaas/Content/API/SDKDocs/hdfsconnector.htm#uriformat. 
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Application
+	* `update` - (Defaults to 20 minutes), when updating the Application
+	* `delete` - (Defaults to 20 minutes), when destroying the Application
+
 
 ## Import
 

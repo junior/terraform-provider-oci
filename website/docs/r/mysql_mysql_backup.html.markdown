@@ -35,6 +35,7 @@ resource "oci_mysql_mysql_backup" "test_mysql_backup" {
 The following arguments are supported:
 
 * `backup_type` - (Optional) The type of backup.
+* `compartment_id` - (Optional) (Updatable) The OCID of the compartment.
 * `db_system_id` - (Required) The OCID of the DB System the Backup is associated with.
 * `defined_tags` - (Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. Example: `{"foo-namespace.bar-key": "value"}` 
 * `description` - (Optional) (Updatable) A user-supplied description for the backup.
@@ -53,7 +54,7 @@ The following attributes are exported:
 * `backup_size_in_gbs` - The size of the backup in base-2 (IEC) gibibytes. (GiB).
 * `backup_type` - The type of backup.
 * `compartment_id` - The OCID of the compartment.
-* `creation_type` - If the backup was created automatically, or by a manual request.
+* `creation_type` - Indicates how the backup was created: manually, automatic, or by an Operator. 
 * `data_storage_size_in_gb` - Initial size of the data volume in GiBs. 
 * `db_system_id` - The OCID of the DB System the backup is associated with.
 * `db_system_snapshot` - Snapshot of the DbSystem details at the time of the backup 
@@ -129,6 +130,14 @@ The following attributes are exported:
 * `state` - The state of the backup.
 * `time_created` - The time the backup record was created.
 * `time_updated` - The time at which the backup was updated.
+
+## Timeouts
+
+The `timeouts` block allows you to specify [timeouts](https://registry.terraform.io/providers/hashicorp/oci/latest/docs/guides/changing_timeouts) for certain operations:
+	* `create` - (Defaults to 20 minutes), when creating the Mysql Backup
+	* `update` - (Defaults to 20 minutes), when updating the Mysql Backup
+	* `delete` - (Defaults to 20 minutes), when destroying the Mysql Backup
+
 
 ## Import
 

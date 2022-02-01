@@ -17,6 +17,7 @@ resource "oci_objectstorage_object" "object1" {
   content             = file("index.html")
   content_disposition = "attachment; filename=\"filename.html\""
   storage_tier        = "InfrequentAccess"
+  opc_sse_kms_key_id  = var.kms_key_ocid
 }
 
 resource "oci_objectstorage_object" "object_with_content_md5" {
@@ -27,6 +28,8 @@ resource "oci_objectstorage_object" "object_with_content_md5" {
   content_type        = "text/html"
   content             = file("index.html")
   content_disposition = "attachment; filename=\"filename.html\""
+  storage_tier        = "InfrequentAccess"
+  opc_sse_kms_key_id  = var.kms_key_ocid
 
   # we also support the base64 type of the content_md5, for example: G5uedo16+mhIOKSt4h/L2g==
   content_md5 = filemd5("index.html")
@@ -41,6 +44,7 @@ resource "oci_objectstorage_object" "source_object" {
   source              = oci_objectstorage_object.object1.object
   content_disposition = "attachment; filename=\"filename.html\""
   storage_tier        = "InfrequentAccess"
+  opc_sse_kms_key_id  = var.kms_key_ocid
 }
 
 resource "oci_objectstorage_object" "source_uri_object" {
@@ -51,6 +55,7 @@ resource "oci_objectstorage_object" "source_uri_object" {
   content_type        = "text/html"
   content_disposition = "attachment; filename=\"filename.html\""
   storage_tier        = "InfrequentAccess"
+  opc_sse_kms_key_id  = var.kms_key_ocid
 
   source_uri_details {
     region    = local.source_region
@@ -99,7 +104,7 @@ data "oci_objectstorage_objects" "objects1" {
 data "oci_objectstorage_object" "object" {
   namespace = data.oci_objectstorage_namespace.ns.namespace
   bucket    = oci_objectstorage_bucket.bucket1.name
-  object    = "index.html"
+  object    = oci_objectstorage_object.object1.object
 }
 
 output "object_data" {

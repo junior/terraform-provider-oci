@@ -10,14 +10,17 @@ description: |-
 # Data Source: oci_core_images
 This data source provides the list of Images in Oracle Cloud Infrastructure Core service.
 
-Lists the available images in the specified compartment, including
+Lists a subset of images available in the specified compartment, including
 [platform images](https://docs.cloud.oracle.com/iaas/Content/Compute/References/images.htm) and
-[custom images](https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm) that have
-been created.
+[custom images](https://docs.cloud.oracle.com/iaas/Content/Compute/Tasks/managingcustomimages.htm). 
+The list of platform images includes the three most recently published versions 
+of each major distribution.
 
-The list of images that's returned is ordered to first show all
-platform images, then all custom images. The order of images might
-change when new images are released.
+The list of images returned is ordered to first show the recent platform images,
+then all of the custom images.
+
+**Caution:** Platform images are refreshed regularly. When new images are released, older versions are replaced. 
+The image OCIDs remain available, but when the platform image is replaced, the image OCIDs are no longer returned as part of the platform image list.
 
 
 ## Example Usage
@@ -62,9 +65,10 @@ The following attributes are exported:
 The following attributes are exported:
 
 * `agent_features` - Oracle Cloud Agent features supported on the image.
-	* `is_management_supported` - Whether Oracle Cloud Agent can run all the available management plugins. 
-	* `is_monitoring_supported` - Whether Oracle Cloud Agent can gather performance metrics and monitor the instance. 
+	* `is_management_supported` - This attribute is not used. 
+	* `is_monitoring_supported` - This attribute is not used. 
 * `base_image_id` - The OCID of the image originally used to launch the instance.
+* `billable_size_in_gbs` - The size of the internal storage for this image that is subject to billing (1 GB = 1,073,741,824 bytes).  Example: `100` 
 * `compartment_id` - The OCID of the compartment containing the instance you want to use as the basis for the image. 
 * `create_image_allowed` - Whether instances launched with this image can be used to create new images. For example, you cannot create an image of an Oracle Database instance.  Example: `true` 
 * `defined_tags` - Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see [Resource Tags](https://docs.cloud.oracle.com/iaas/Content/General/Concepts/resourcetags.htm).  Example: `{"Operations.CostCenter": "42"}` 

@@ -364,13 +364,16 @@ resource "oci_ocvp_sddc" "test_sddc" {
   provisioning_subnet_id      = oci_core_subnet.test_provisioning_subnet.id
   ssh_authorized_keys         = "ssh-rsa KKKLK3NzaC1yc2EAAAADAQABAAABAQC+UC9MFNA55NIVtKPIBCNw7++ACXhD0hx+Zyj25JfHykjz/QU3Q5FAU3DxDbVXyubgXfb/GJnrKRY8O4QDdvnZZRvQFFEOaApThAmCAM5MuFUIHdFvlqP+0W+ZQnmtDhwVe2NCfcmOrMuaPEgOKO3DOW6I/qOOdO691Xe2S9NgT9HhN0ZfFtEODVgvYulgXuCCXsJs+NUqcHAOxxFUmwkbPvYi0P0e2DT8JKeiOOC8VKUEgvVx+GKmqasm+Y6zHFW7vv3g2GstE1aRs3mttHRoC/JPM86PRyIxeWXEMzyG5wHqUu4XZpDbnWNxi6ugxnAGiL3CrIFdCgRNgHz5qS1l MustWin"
   vmotion_vlan_id             = oci_core_vlan.test_vmotion_net_vlan.id
-  vmware_software_version     = "${lookup(data.oci_ocvp_supported_vmware_software_versions.test_supported_vmware_software_versions.items[2], "version")}"
+  vmware_software_version     = "7.0 update 2"
   vsan_vlan_id                = oci_core_vlan.test_vsan_net_vlan.id
   vsphere_vlan_id             = oci_core_vlan.test_vsphere_net_vlan.id
   // Optional
   provisioning_vlan_id = oci_core_vlan.test_provisioning_vlan.id
   replication_vlan_id  = oci_core_vlan.test_replication_vlan.id
   initial_sku          = data.oci_ocvp_supported_skus.test_supported_skus.items[0].name
+  hcx_action = "upgrade"
+  refresh_hcx_license_status = true
+  #reserving_hcx_on_premise_license_keys = var.reserving_hcx_on_premise_license_keys
   #defined_tags  = {"${oci_identity_tag_namespace.tag-namespace1.name}.${oci_identity_tag.tag1.name}" = "${var.sddc_defined_tags_value}"}
   #display_name  = var.sddc_display_name
   #freeform_tags = var.sddc_freeform_tags
@@ -382,11 +385,13 @@ resource "oci_ocvp_esxi_host" "test_esxi_host" {
   #Required
   sddc_id = oci_ocvp_sddc.test_sddc.id
   #Optional
+  compute_availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[0]["name"]
   current_sku = data.oci_ocvp_supported_skus.test_supported_skus.items[0].name
   next_sku    = data.oci_ocvp_supported_skus.test_supported_skus.items[0].name
   #defined_tags  = {"${oci_identity_tag_namespace.tag-namespace1.name}.${oci_identity_tag.tag1.name}" = "${var.esxihost_defined_tags_value}"}
   #display_name  = var.esxihost_display_name
   #freeform_tags = var.esxihost_freeform_tags
+  #failed_esxi_host_id = var.failed_esxi_host_ocid
 }
 
 data "oci_ocvp_sddcs" "test_sddcs" {
