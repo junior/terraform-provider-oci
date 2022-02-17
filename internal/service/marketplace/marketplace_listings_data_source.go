@@ -7,7 +7,7 @@ import (
 	"context"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	oci_marketplace "github.com/oracle/oci-go-sdk/v56/marketplace"
+	oci_marketplace "github.com/oracle/oci-go-sdk/v58/marketplace"
 
 	"github.com/terraform-providers/terraform-provider-oci/internal/client"
 	"github.com/terraform-providers/terraform-provider-oci/internal/tfresource"
@@ -26,6 +26,10 @@ func MarketplaceListingsDataSource() *schema.Resource {
 				},
 			},
 			"compartment_id": {
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"image_id": {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -280,6 +284,11 @@ func (s *MarketplaceListingsDataSourceCrud) Get() error {
 	if compartmentId, ok := s.D.GetOkExists("compartment_id"); ok {
 		tmp := compartmentId.(string)
 		request.CompartmentId = &tmp
+	}
+
+	if imageId, ok := s.D.GetOkExists("image_id"); ok {
+		tmp := imageId.(string)
+		request.ImageId = &tmp
 	}
 
 	if isFeatured, ok := s.D.GetOkExists("is_featured"); ok {

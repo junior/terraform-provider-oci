@@ -10,7 +10,7 @@ import (
 	"github.com/terraform-providers/terraform-provider-oci/internal/tfresource"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	oci_database "github.com/oracle/oci-go-sdk/v56/database"
+	oci_database "github.com/oracle/oci-go-sdk/v58/database"
 )
 
 func DatabaseAutonomousDatabasesDataSource() *schema.Resource {
@@ -383,6 +383,8 @@ func (s *DatabaseAutonomousDatabasesDataSourceCrud) SetData() error {
 		if r.SubnetId != nil {
 			autonomousDatabase["subnet_id"] = *r.SubnetId
 		}
+
+		autonomousDatabase["supported_regions_to_clone_to"] = r.SupportedRegionsToCloneTo
 
 		if r.SystemTags != nil {
 			autonomousDatabase["system_tags"] = tfresource.SystemTagsToMap(r.SystemTags)

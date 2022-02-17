@@ -1,3 +1,33 @@
+## 4.64.0 (February 16, 2022)
+
+### Added
+- Support for NoSQL service supporting auto scaling pricing model
+- Support for BDS instance metastore config resource and data sources
+- Support for Vision service
+
+### Bug Fix
+- IPA instance pools 409 conflict issue and pool ignore size issue
+- core service - fix agent_config section in core instance resource for updates
+
+## 4.63.0 (February 09, 2022)
+
+### Added
+- Support for osp_gateway service supporting invoices and subscriptions
+- Support for data science service to list fast launch job configs
+- Get Secret content support
+
+### Fixed
+- Adding missing visualbuilder service code
+## 4.62.0 (February 02, 2022)
+
+### Added
+- Support for Marketplace API to Get Listing id from Image id
+- Supoort for ADBS cross region clone
+- Update document for `devops` service
+- Support for Capacity Reservation
+### Bug Fix
+- Failed Nodepool work requests clean up the resources created
+
 ## 4.61.0 (January 26, 2022)
 
 ### Added

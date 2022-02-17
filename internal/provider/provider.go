@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math"
 	"os"
 	"path"
 	"path/filepath"
@@ -33,8 +32,8 @@ import (
 	"net/http"
 	"runtime"
 
-	oci_common "github.com/oracle/oci-go-sdk/v56/common"
-	oci_common_auth "github.com/oracle/oci-go-sdk/v56/common/auth"
+	oci_common "github.com/oracle/oci-go-sdk/v58/common"
+	oci_common_auth "github.com/oracle/oci-go-sdk/v58/common/auth"
 
 	"github.com/terraform-providers/terraform-provider-oci/httpreplay"
 	tf_client "github.com/terraform-providers/terraform-provider-oci/internal/client"
@@ -246,7 +245,7 @@ func ProviderConfig(d *schema.ResourceData) (interface{}, error) {
 		val := time.Duration(retryDurationSeconds.(int)) * time.Second
 		if retryDurationSeconds.(int) < 0 {
 			// Retry for maximum amount of time, if a negative value was specified
-			val = time.Duration(math.MaxInt64)
+			val = time.Duration(globalvar.MaxInt64)
 		}
 		tf_resource.ConfiguredRetryDuration = &val
 	}
@@ -406,6 +405,15 @@ func getConfigProviders(d *schema.ResourceData, auth string) ([]oci_common.Confi
 		if !ok {
 			log.Printf("[DEBUG] Ignoring all user credentials for %v authentication", auth)
 		}
+
+		region, ok := d.GetOk(globalvar.RegionAttrName)
+		if !ok {
+			return nil, fmt.Errorf("can not get %s from Terraform configuration (InstancePrincipal)", globalvar.RegionAttrName)
+		}
+		// if region is part of the provider block make sure it is part of the final configuration too, and overwrites the region in the profile. +
+		regionProvider := oci_common.NewRawConfigurationProvider("", "", region.(string), "", "", nil)
+		configProviders = append(configProviders, regionProvider)
+
 		profile, ok := d.GetOk(globalvar.ConfigFileProfileAttrName)
 		if !ok {
 			return nil, fmt.Errorf("missing profile in provider block %v", globalvar.ConfigFileProfileAttrName)

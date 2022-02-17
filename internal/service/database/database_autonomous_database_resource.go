@@ -16,9 +16,9 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
 
-	oci_common "github.com/oracle/oci-go-sdk/v56/common"
-	oci_database "github.com/oracle/oci-go-sdk/v56/database"
-	oci_work_requests "github.com/oracle/oci-go-sdk/v56/workrequests"
+	oci_common "github.com/oracle/oci-go-sdk/v58/common"
+	oci_database "github.com/oracle/oci-go-sdk/v58/database"
+	oci_work_requests "github.com/oracle/oci-go-sdk/v58/workrequests"
 )
 
 func DatabaseAutonomousDatabaseResource() *schema.Resource {
@@ -663,6 +663,13 @@ func DatabaseAutonomousDatabaseResource() *schema.Resource {
 					string(oci_database.AutonomousDatabaseLifecycleStateStopped),
 					string(oci_database.AutonomousDatabaseLifecycleStateAvailable),
 				}, true),
+			},
+			"supported_regions_to_clone_to": {
+				Type:     schema.TypeList,
+				Computed: true,
+				Elem: &schema.Schema{
+					Type: schema.TypeString,
+				},
 			},
 			"system_tags": {
 				Type:     schema.TypeMap,
@@ -1504,6 +1511,8 @@ func (s *DatabaseAutonomousDatabaseResourceCrud) SetData() error {
 	if s.Res.SubnetId != nil {
 		s.D.Set("subnet_id", *s.Res.SubnetId)
 	}
+
+	s.D.Set("supported_regions_to_clone_to", s.Res.SupportedRegionsToCloneTo)
 
 	if s.Res.SystemTags != nil {
 		s.D.Set("system_tags", tfresource.SystemTagsToMap(s.Res.SystemTags))

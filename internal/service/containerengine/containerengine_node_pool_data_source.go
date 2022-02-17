@@ -10,7 +10,7 @@ import (
 	"github.com/terraform-providers/terraform-provider-oci/internal/tfresource"
 
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
-	oci_containerengine "github.com/oracle/oci-go-sdk/v56/containerengine"
+	oci_containerengine "github.com/oracle/oci-go-sdk/v58/containerengine"
 )
 
 func ContainerengineNodePoolDataSource() *schema.Resource {
@@ -73,6 +73,12 @@ func (s *ContainerengineNodePoolDataSourceCrud) SetData() error {
 	if s.Res.CompartmentId != nil {
 		s.D.Set("compartment_id", *s.Res.CompartmentId)
 	}
+
+	if s.Res.DefinedTags != nil {
+		s.D.Set("defined_tags", tfresource.DefinedTagsToMap(s.Res.DefinedTags))
+	}
+
+	s.D.Set("freeform_tags", s.Res.FreeformTags)
 
 	initialNodeLabels := []interface{}{}
 	for _, item := range s.Res.InitialNodeLabels {
@@ -149,6 +155,10 @@ func (s *ContainerengineNodePoolDataSourceCrud) SetData() error {
 	}
 
 	s.D.Set("subnet_ids", s.Res.SubnetIds)
+
+	if s.Res.SystemTags != nil {
+		s.D.Set("system_tags", tfresource.SystemTagsToMap(s.Res.SystemTags))
+	}
 
 	return nil
 }

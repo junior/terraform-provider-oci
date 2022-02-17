@@ -5,6 +5,7 @@ package provider
 
 import (
 	tf_ai_anomaly_detection "github.com/terraform-providers/terraform-provider-oci/internal/service/ai_anomaly_detection"
+	tf_ai_vision "github.com/terraform-providers/terraform-provider-oci/internal/service/ai_vision"
 	tf_analytics "github.com/terraform-providers/terraform-provider-oci/internal/service/analytics"
 	tf_apigateway "github.com/terraform-providers/terraform-provider-oci/internal/service/apigateway"
 	tf_apm "github.com/terraform-providers/terraform-provider-oci/internal/service/apm"
@@ -67,6 +68,7 @@ import (
 	tf_opsi "github.com/terraform-providers/terraform-provider-oci/internal/service/opsi"
 	tf_optimizer "github.com/terraform-providers/terraform-provider-oci/internal/service/optimizer"
 	tf_osmanagement "github.com/terraform-providers/terraform-provider-oci/internal/service/osmanagement"
+	tf_osp_gateway "github.com/terraform-providers/terraform-provider-oci/internal/service/osp_gateway"
 	tf_resourcemanager "github.com/terraform-providers/terraform-provider-oci/internal/service/resourcemanager"
 	tf_sch "github.com/terraform-providers/terraform-provider-oci/internal/service/sch"
 	tf_service_catalog "github.com/terraform-providers/terraform-provider-oci/internal/service/service_catalog"
@@ -153,6 +155,8 @@ func init() {
 	RegisterDatasource("oci_bds_bds_instance", tf_bds.BdsBdsInstanceDataSource())
 	RegisterDatasource("oci_bds_bds_instance_api_key", tf_bds.BdsBdsInstanceApiKeyDataSource())
 	RegisterDatasource("oci_bds_bds_instance_api_keys", tf_bds.BdsBdsInstanceApiKeysDataSource())
+	RegisterDatasource("oci_bds_bds_instance_metastore_config", tf_bds.BdsBdsInstanceMetastoreConfigDataSource())
+	RegisterDatasource("oci_bds_bds_instance_metastore_configs", tf_bds.BdsBdsInstanceMetastoreConfigsDataSource())
 	RegisterDatasource("oci_bds_bds_instances", tf_bds.BdsBdsInstancesDataSource())
 	// blockchain service
 	RegisterDatasource("oci_blockchain_blockchain_platform", tf_blockchain.BlockchainBlockchainPlatformDataSource())
@@ -553,6 +557,7 @@ func init() {
 	RegisterDatasource("oci_datascience_notebook_sessions", tf_datascience.DatascienceNotebookSessionsDataSource())
 	RegisterDatasource("oci_datascience_project", tf_datascience.DatascienceProjectDataSource())
 	RegisterDatasource("oci_datascience_projects", tf_datascience.DatascienceProjectsDataSource())
+	RegisterDatasource("oci_datascience_fast_launch_job_configs", tf_datascience.DatascienceFastLaunchJobConfigsDataSource())
 	// devops service
 	RegisterDatasource("oci_devops_build_pipeline", tf_devops.DevopsBuildPipelineDataSource())
 	RegisterDatasource("oci_devops_build_pipeline_stage", tf_devops.DevopsBuildPipelineStageDataSource())
@@ -936,6 +941,12 @@ func init() {
 	RegisterDatasource("oci_osmanagement_managed_instances", tf_osmanagement.OsmanagementManagedInstancesDataSource())
 	RegisterDatasource("oci_osmanagement_software_source", tf_osmanagement.OsmanagementSoftwareSourceDataSource())
 	RegisterDatasource("oci_osmanagement_software_sources", tf_osmanagement.OsmanagementSoftwareSourcesDataSource())
+	//osp_gateway
+	RegisterDatasource("oci_osp_gateway_invoice", tf_osp_gateway.OspGatewayInvoiceDataSource())
+	RegisterDatasource("oci_osp_gateway_invoices", tf_osp_gateway.OspGatewayInvoicesDataSource())
+	RegisterDatasource("oci_osp_gateway_invoices_invoice_lines", tf_osp_gateway.OspGatewayInvoicesInvoiceLinesDataSource())
+	RegisterDatasource("oci_osp_gateway_subscription", tf_osp_gateway.OspGatewaySubscriptionDataSource())
+	RegisterDatasource("oci_osp_gateway_subscriptions", tf_osp_gateway.OspGatewaySubscriptionsDataSource())
 	// resourcemanager service
 	RegisterDatasource("oci_resourcemanager_stack", tf_resourcemanager.ResourcemanagerStackDataSource())
 	RegisterDatasource("oci_resourcemanager_stack_tf_state", tf_resourcemanager.ResourcemanagerStackTfStateDataSource())
@@ -973,8 +984,15 @@ func init() {
 	RegisterDatasource("oci_vault_secret", tf_vault.VaultSecretDataSource())
 	RegisterDatasource("oci_vault_secret_version", tf_vault.VaultSecretVersionDataSource())
 	RegisterDatasource("oci_vault_secrets", tf_vault.VaultSecretsDataSource())
+	//oci vision service
+	RegisterDatasource("oci_ai_vision_model", tf_ai_vision.AiVisionModelDataSource())
+	RegisterDatasource("oci_ai_vision_models", tf_ai_vision.AiVisionModelsDataSource())
+	RegisterDatasource("oci_ai_vision_project", tf_ai_vision.AiVisionProjectDataSource())
+	RegisterDatasource("oci_ai_vision_projects", tf_ai_vision.AiVisionProjectsDataSource())
 	// visual_builder service
 	RegisterDatasource("oci_visual_builder_vb_instance", tf_visual_builder.VisualBuilderVbInstanceDataSource())
+	RegisterDatasource("oci_visual_builder_vb_instances", tf_visual_builder.VisualBuilderVbInstancesDataSource())
+	RegisterDatasource("oci_visual_builder_vb_instance_applications", tf_visual_builder.VisualBuilderVbInstanceApplicationsDataSource())
 	// vulnerability_scanning service
 	RegisterDatasource("oci_vulnerability_scanning_container_scan_recipe", tf_vulnerability_scanning.VulnerabilityScanningContainerScanRecipeDataSource())
 	RegisterDatasource("oci_vulnerability_scanning_container_scan_recipes", tf_vulnerability_scanning.VulnerabilityScanningContainerScanRecipesDataSource())

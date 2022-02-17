@@ -5,6 +5,7 @@ package provider
 
 import (
 	tf_ai_anomaly_detection "github.com/terraform-providers/terraform-provider-oci/internal/service/ai_anomaly_detection"
+	tf_ai_vision "github.com/terraform-providers/terraform-provider-oci/internal/service/ai_vision"
 	tf_analytics "github.com/terraform-providers/terraform-provider-oci/internal/service/analytics"
 	tf_apigateway "github.com/terraform-providers/terraform-provider-oci/internal/service/apigateway"
 	tf_apm "github.com/terraform-providers/terraform-provider-oci/internal/service/apm"
@@ -67,10 +68,12 @@ import (
 	tf_opsi "github.com/terraform-providers/terraform-provider-oci/internal/service/opsi"
 	tf_optimizer "github.com/terraform-providers/terraform-provider-oci/internal/service/optimizer"
 	tf_osmanagement "github.com/terraform-providers/terraform-provider-oci/internal/service/osmanagement"
+	tf_osp_gateway "github.com/terraform-providers/terraform-provider-oci/internal/service/osp_gateway"
 	tf_sch "github.com/terraform-providers/terraform-provider-oci/internal/service/sch"
 	tf_service_catalog "github.com/terraform-providers/terraform-provider-oci/internal/service/service_catalog"
 	tf_streaming "github.com/terraform-providers/terraform-provider-oci/internal/service/streaming"
 	tf_usage_proxy "github.com/terraform-providers/terraform-provider-oci/internal/service/usage_proxy"
+	tf_vault "github.com/terraform-providers/terraform-provider-oci/internal/service/vault"
 	tf_visual_builder "github.com/terraform-providers/terraform-provider-oci/internal/service/visual_builder"
 	tf_vulnerability_scanning "github.com/terraform-providers/terraform-provider-oci/internal/service/vulnerability_scanning"
 	tf_waas "github.com/terraform-providers/terraform-provider-oci/internal/service/waas"
@@ -117,6 +120,7 @@ func init() {
 	RegisterResource("oci_bds_auto_scaling_configuration", tf_bds.BdsAutoScalingConfigurationResource())
 	RegisterResource("oci_bds_bds_instance", tf_bds.BdsBdsInstanceResource())
 	RegisterResource("oci_bds_bds_instance_api_key", tf_bds.BdsBdsInstanceApiKeyResource())
+	RegisterResource("oci_bds_bds_instance_metastore_config", tf_bds.BdsBdsInstanceMetastoreConfigResource())
 	// blockchain service
 	RegisterResource("oci_blockchain_blockchain_platform", tf_blockchain.BlockchainBlockchainPlatformResource())
 	RegisterResource("oci_blockchain_osn", tf_blockchain.BlockchainOsnResource())
@@ -492,6 +496,8 @@ func init() {
 	RegisterResource("oci_osmanagement_managed_instance_group", tf_osmanagement.OsmanagementManagedInstanceGroupResource())
 	RegisterResource("oci_osmanagement_managed_instance_management", tf_osmanagement.OsmanagementManagedInstanceManagementResource())
 	RegisterResource("oci_osmanagement_software_source", tf_osmanagement.OsmanagementSoftwareSourceResource())
+	// osp_gateway
+	RegisterResource("oci_osp_gateway_subscription", tf_osp_gateway.OspGatewaySubscriptionResource())
 	// resourcemanager service
 	// sch service
 	RegisterResource("oci_sch_service_connector", tf_sch.SchServiceConnectorResource())
@@ -507,6 +513,10 @@ func init() {
 	// usage_proxy service
 	RegisterResource("oci_usage_proxy_subscription_redeemable_user", tf_usage_proxy.UsageProxySubscriptionRedeemableUserResource())
 	// vault service
+	RegisterResource("oci_vault_secret", tf_vault.VaultSecretResource())
+	// vision service
+	RegisterResource("oci_ai_vision_project", tf_ai_vision.AiVisionProjectResource())
+	RegisterResource("oci_ai_vision_model", tf_ai_vision.AiVisionModelResource())
 	// visual_builder service
 	RegisterResource("oci_visual_builder_vb_instance", tf_visual_builder.VisualBuilderVbInstanceResource())
 	// vulnerability_scanning service
